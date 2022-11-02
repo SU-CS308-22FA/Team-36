@@ -15,6 +15,7 @@ export const userColumns = [
     width: 230,
   },
   {
+
     field: "user",
     headerName: "User",
     width: 230,
@@ -28,10 +29,13 @@ export const userColumns = [
     },
   },
   {
+
     field: "email",
     headerName: "Email",
     width: 230,
   }
+
+
   ,
 
   {
@@ -51,4 +55,5 @@ export const userColumns = [
       );
     },
   },
+
 ];

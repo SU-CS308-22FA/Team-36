@@ -22,7 +22,7 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user })
-        navigate("/")
+        navigate("/users")
       })
       .catch((error) => {
         setError(true);
@@ -30,7 +30,9 @@ const Login = () => {
   };
 
   const sendToSignup = () => {
-    navigate("/signup")
+
+    navigate("/Signup")
+
   }
 
   return (
@@ -49,7 +51,9 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit">Login</button>
-          <button onClick={sendToSignup}>Sign up</button>
+
+          <button type="sign-up" onClick={sendToSignup}>Sign up</button>
+
           {error && <span>Wrong email or password!</span>}
         </form>
       </div>
