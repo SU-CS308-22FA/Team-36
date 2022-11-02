@@ -5,12 +5,6 @@ import { auth, db } from "../../firebase";
 import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, deleteUser } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext"
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
-import { useContext, useState, useEffect } from "react";
-import "./edit.scss";
-import { auth, db } from "../../firebase";
-import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider } from "firebase/auth";
-import { AuthContext } from "../../context/AuthContext"
-import { doc, updateDoc } from "firebase/firestore";
 
 const Edit = () => {
 
