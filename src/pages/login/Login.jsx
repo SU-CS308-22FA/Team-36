@@ -21,15 +21,14 @@ const Login = () => {
       .then((userCredential) => {
         // Signed in
         const user = userCredential.user;
-        console.log("I am here")
         dispatch({ type: "LOGIN", payload: user })
-        console.log("I am here 2")
         navigate("/")
       })
       .catch((error) => {
         setError(true);
       });
   };
+
 
 
   return (
@@ -48,6 +47,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit">Login</button>
+          
           {error && <span>Wrong email or password!</span>}
         </form>
       </div>
