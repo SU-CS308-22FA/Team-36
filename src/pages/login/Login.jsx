@@ -29,7 +29,9 @@ const Login = () => {
       });
   };
 
-
+  const sendToSignup = () => {
+    navigate("/signup")
+  }
 
   return (
     <div className="login">
@@ -47,7 +49,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
           <button type="submit">Login</button>
-          
+          <button onClick={sendToSignup}>Sign up</button>
           {error && <span>Wrong email or password!</span>}
         </form>
       </div>
