@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import "./edit.scss";
 import Navbar from "../../components/navbar/Navbar";
+import PasswordChecklist from "react-password-checklist";
 import { auth, db } from "../../firebase";
 import { updatePassword, updateEmail, reauthenticateWithCredential, EmailAuthProvider, deleteUser } from "firebase/auth";
 import { AuthContext } from "../../context/AuthContext"
@@ -10,6 +11,7 @@ const Edit = () => {
 
     const user = auth.currentUser;
     const [matchError, setMatchError] = useState(false);
+    const [valid, setValid] = useState(false);
     const [deleteError, setDeleteError] = useState(false);
     const [email, setEmail] = useState(user.email);
     const [password, setPassword] = useState("");
@@ -118,7 +120,21 @@ const Edit = () => {
                             required={password.length != 0}
                             onChange={(e) => setConfirmPass(e.target.value)}
                         />
-                        <button type="submit">Edit</button>
+                        <PasswordChecklist
+                            rules={["minLength", "specialChar", "number", "capital", "match"]}
+                            minLength={8}
+                            value={password}
+                            valueAgain={confirmPass}
+                            messages={{
+                                minLength: "Password has more than 8 characters.",
+                                specialChar: "Password has special characters.",
+                                number: "Password has a number.",
+                                capital: "Password has a capital letter.",
+                                match: "Passwords match."
+                            }}
+                            onChange={(isValid) => {setValid(isValid)}}
+                        />
+                        <button disabled={!valid} type="submit">Edit</button>
                         <button type="button" className="delete" onClick={() => handleDelete()}>Delete Profile</button>
                         {matchError && <span>Passwords don't match!</span>}
                         {deleteError && <span>Enter the correct old password in order to Delete Profile!</span>}

@@ -31,6 +31,9 @@
       font-weight: bold;
       cursor: pointer;
     }
+    button:disabled {
+      background-color: adjust-hue($color: #97488dbb, $degrees: 0);
+    }
 
     .delete {
       width: 200px;
