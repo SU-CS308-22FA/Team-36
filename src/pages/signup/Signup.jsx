@@ -9,9 +9,8 @@ import { setDoc, doc } from "firebase/firestore";
 
 const Signup = () => {
 
-  const user = auth.currentUser;
   const [valid, setValid] = useState(false);
-  const [email, setEmail] = useState(user.email);
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [club, setClub] = useState("");
   const navigate = useNavigate()
