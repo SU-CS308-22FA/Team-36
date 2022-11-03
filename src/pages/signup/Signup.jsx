@@ -59,7 +59,7 @@ const Signup = () => {
             <input
               type="password"
               placeholder="password"
-              // required
+              required
               onChange={(e) => setPassword(e.target.value)}
             />
             <input
