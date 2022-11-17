@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Signup from "./pages/signup/Signup";
+import SendReq from "./pages/sendreq/SendReq";
+import Notifications from "./pages/notifications/notifications";
 
 function App() {
 
@@ -18,10 +20,12 @@ function App() {
     <div className="app">
       <BrowserRouter>
         <Routes>
-          <Route path="/">
+          <Route path="*">
             <Route path="" element={<Login />} />
             <Route path="signup" element={<Signup />} />
             <Route path="edit" element={<RequireAuth><Edit /></RequireAuth>} />
+            <Route path="sendreq" element={<SendReq/>} />
+            <Route path="notifications" element={<Notifications/>}/>
             <Route path="users">
               <Route
                 index
@@ -31,6 +35,7 @@ function App() {
                   </RequireAuth>
                 }
               />
+              
             </Route>
           </Route>
         </Routes>
