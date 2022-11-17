@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Signup from "./pages/signup/Signup";
+import Upload_c from "./pages/club_upload/Upload_c";
 
 function App() {
 
@@ -32,6 +33,7 @@ function App() {
                 }
               />
             </Route>
+            <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
           </Route>
         </Routes>
       </BrowserRouter>
