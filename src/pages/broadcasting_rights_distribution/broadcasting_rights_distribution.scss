@@ -1,0 +1,48 @@
+.broadcasting_rights_distribution{
+    .broadcasting_rights_distributionContainer{
+        height: 90vh;
+        width: 100vw;
+        display: flex; 
+        flex-direction: row; 
+        align-items: center;
+        justify-content: center;
+
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 30vw;
+            
+        }
+        .warning{
+            color: red;
+        }
+        .valid{
+            color: green;
+        }
+        h3{
+            margin: 10px;
+        }
+        button{
+            margin: 10px;
+        }
+        ::placeholder{
+            text-align: center;
+        }
+        input{
+            margin: 5px;
+            width: 20vw;
+            
+        }
+        span{
+            margin: 5px;
+
+        }
+        .distributed_table{
+
+            margin: 20px;
+            width: 60vw;
+
+        }
+    }
+}
