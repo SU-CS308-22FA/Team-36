@@ -29,7 +29,7 @@ useEffect(async () => {
             <Navbar />
             <div className="center">
                 <div className="container">
-                    <h2>Deadline:</h2><span>{moment(date).format('DD-MM-YYYY')}</span>
+                    <h2>Deadline:</h2><span>{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</span>
                     <div className="block">
                         <h1>Upload Document</h1>
                         <img src={document}></img>
