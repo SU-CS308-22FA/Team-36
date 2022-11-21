@@ -13,6 +13,8 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [club, setClub] = useState("");
+  const [role, setRole] = useState("");
+  const [name, setName] = useState("");
   const navigate = useNavigate()
   const [confirmPass, setConfirmPass] = useState("");
 
@@ -27,8 +29,26 @@ const Signup = () => {
       await setDoc(doc(db, "users", res.user.uid), {
         "email": email,
         "password": password,
-        "Club Name": club
+        "name": name,
+        "role": role
       });
+
+      /*if (role == "Club") {
+        await setDoc(doc(db, "users", res.user.uid), {
+          "email": email,
+          "password": password,
+          "Club Name": name
+        });  
+      }
+      else if (role == "Player") {
+        await setDoc(doc(db, "users", res.user.uid), {
+          "email": email,
+          "password": password,
+          "Player Name": name
+        });
+      }*/
+
+      
       console.log("User: " + res.user.uid + " added")
       console.log("Data added")
       navigate("/")
@@ -39,10 +59,33 @@ const Signup = () => {
 
   return (
     <div>
-      <div className="login">
+      <div className="signup">
         <div>
           <div className="title">SignUp</div>
           <form onSubmit={handleAdd}>
+            <div className="roleChoice">Role:
+              <input
+                type="radio"
+                value="Federation Representative"
+                name="role"
+                id="federation representative"
+                onChange={(e) => setRole(e.target.value)}
+                /> <label>Federation Representative</label>
+                <input
+                type="radio"
+                value="Club"
+                name="role"
+                id="club"
+                onChange={(e) => setRole(e.target.value)}
+                /> <label>Club</label>
+                <input
+                type="radio"
+                value="Player"
+                name="role"
+                id="player"
+                onChange={(e) => setRole(e.target.value)}
+                /> <label>Player</label>
+              </div>
             <input
               type="email"
               // value={user.email}
@@ -52,9 +95,9 @@ const Signup = () => {
             />
             <input
               type="text"
-              placeholder="club name"
+              placeholder="Name"
               // required
-              onChange={(e) => setClub(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               type="password"
