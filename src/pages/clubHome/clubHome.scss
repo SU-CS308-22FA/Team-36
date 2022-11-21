@@ -1,7 +1,20 @@
 .clubHome {
     display: flex;
-    width: 100%;
     .clubHomeContainer {
-      flex: 6;
-    }
+        height: 100vh;
+        flex: 10;  
+        align-items: center;
+        justify-content: center;
+        
+        .inside{
+          height: 90vh;
+          display: flex;  
+          align-items: center;
+          justify-content: center;
+          
+          
+          
+          }
+  
+      }
   }

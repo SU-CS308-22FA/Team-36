@@ -4,13 +4,11 @@ import { updateDoc, doc } from "firebase/firestore";
 import { DateTimePicker, LocalizationProvider} from '@mui/x-date-pickers';
 import { useState } from "react";
 import { db } from "../../firebase";
-
-
-/*************/
 import dayjs from 'dayjs';
 import TextField from '@mui/material/TextField';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-//import { gridColumnsTotalWidthSelector } from "@mui/x-data-grid";
+import FedSidebar from "../../components/fedSidebar/FedSidebar";
+
 
 /*************'YYYY-MM-DDTHH:mm:ss.SSS[Z]'**/
 
@@ -40,12 +38,15 @@ const Deadline_setting = () => {
 
   return (
     <div className="deadline_setting">
-      <Navbar/>
+      
+      
       <div className="deadline_settingContainer">
+        <Navbar/>
+        <div className="inside">
         <form onSubmit={setDeadline}>
             <LocalizationProvider dateAdapter={AdapterDayjs}>
                 <DateTimePicker
-                label="Pick a date and time for t deadline"
+                label="Pick a date and time for the deadline"
                 renderInput={(params) => <TextField {...params} />}
                 value={value}
                 onChange={(e) => {setValue(e);}}
@@ -58,6 +59,7 @@ const Deadline_setting = () => {
 
             {/* <h1>{value.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')}</h1> */}
         </form>
+        </div>
       </div>
     </div>
   )

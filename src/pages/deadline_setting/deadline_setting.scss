@@ -1,21 +1,34 @@
 .deadline_setting {
+    display: flex;
 
     .deadline_settingContainer{
-        height: 90vh;
-        display: flex;  
+        height: 100vh;
+        flex: 10;  
         align-items: center;
         justify-content: center;
-    
-        form{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            
-        }
 
-        button{
-            margin: 10px;
+        .inside{
+            height: 90vh;
+            display: flex;  
+            align-items: center;
+            justify-content: center;
+
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                
+            }
+    
+            button{
+                margin: 10px;
+            }
+        
+        
+        
         }
+    
+        
 
     
     }

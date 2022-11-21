@@ -1,12 +1,18 @@
+import "./playerHome.scss"
 import Navbar from "../../components/navbar/Navbar"
+import PlayerSidebar from "../../components/playerSidebar/PlayerSidebar"
 
 
 const PlayerHome = () => {
   return (
     <div className="playerHome">
-        <Navbar/>
+        <PlayerSidebar/>
         <div className="playerHomeContainer">
-        Player
+        <Navbar/>
+        <div className="inside">
+            <h1>Player</h1>
+        </div>
+        
         
         </div>
     </div>
