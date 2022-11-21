@@ -4,12 +4,14 @@ import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../firebase";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext"
+import { doc, getDoc, DocumentSnapshot, DocumentReference} from "firebase/firestore";
+import { db } from "../../firebase";
 
 const Login = () => {
   const [error, setError] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  //const [role, setRole] = useState("")
   const navigate = useNavigate()
 
   const { dispatch } = useContext(AuthContext)
@@ -18,13 +20,25 @@ const Login = () => {
     e.preventDefault();
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
+      .then(async (userCredential) => {
         // Signed in
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user })
-        navigate("/users")
+        console.log("I am here1");
+
+        var thisuser = getDoc(doc(db, "users", user.uid));
+        var role = (String) ((await thisuser).get("role"));
+        console.log(role +" I am here2");
+        if (role == "Federation Representative") {
+          navigate("/deadlinesfed");
+        }
+        else{
+          navigate("/users");
+        }
+
       })
       .catch((error) => {
+        console.log(error);
         setError(true);
       });
   };
