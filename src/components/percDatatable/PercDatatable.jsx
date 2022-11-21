@@ -5,6 +5,8 @@ import {
   collection,
   getDocs,
   onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 import { db } from "../../firebase";
 
@@ -35,11 +37,11 @@ const PercDatatable = () => {
     }
   ];
 
-  useEffect(() => {
+  useEffect(async () => {
     const fetchData = async () => {
       let list = []
       try {
-        const querySnapshot = await getDocs(collection(db, "ClubPositions"));
+        const querySnapshot = await getDocs(query(collection(db, "ClubPositions"), where("Position", "!=", 0)));
         querySnapshot.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data()})
         });
@@ -53,7 +55,7 @@ const PercDatatable = () => {
     fetchData()
 
     const unsub = onSnapshot(
-      collection(db, "ClubPositions"),
+      await getDocs(query(collection(db, "ClubPositions"), where("Position", "!=", 0))),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -79,8 +81,8 @@ const PercDatatable = () => {
         className="datagrid"
         rows={data}
         columns={Clubcolumns}
-        pageSize={11}
-        rowsPerPageOptions={[11]}
+        pageSize={10}
+        rowsPerPageOptions={[10]}
         
       />
     </div>
