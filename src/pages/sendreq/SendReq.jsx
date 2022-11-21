@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { db} from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import './SendReq.scss';
-//import Popup from 'reactjs-popup';
+import { TextArea } from '@react-ui-org/react-ui';
  
 const SendReq = () => {
     const [wtype , setType] = useState('');
@@ -50,12 +50,14 @@ const SendReq = () => {
       });
         alert('A form was submitted with type :"' + wtype +
         '" ,from :"'+from +'" and to :"' + sendTo + '"');
-        setType("");
         setTitle("");
         setFrom("");
         setSendTo("");
         setContent("");
     }
+
+
+
   return (
     <div className="sendreq">
     <header className="sendreq-header">
@@ -66,8 +68,12 @@ const SendReq = () => {
         <label >
           Type:
         </label><br/>
-        <input type="text" placeholder="Warning or Request?" value={wtype} required onChange={(e) => {handleType(e)}} /><br/>
-          { /*when user write in type input box , handleType()
+        <select  name="type" id="type_select" required onChange = {(e) => {handleType(e)}}>
+          <option value= "" selected disabled hidde>--- Please Choose an Option ---</option>
+          <option value= "Request"> Document Request</option>
+          <option value= "Warning"> Warning </option>
+        </select>
+            { /*when user write in type input box , handleType()
               function will be called. */}
         <label >
           Title:
@@ -88,9 +94,11 @@ const SendReq = () => {
           {/* when user write in sendTo input box , handleSendTo()
               function will be called.*/}
         <label>
-          Content:
+          Issue Description:
         </label><br/>
-        <input type="text" placeholder="Description" value={content} required onChange={(e) => {handleContent(e)}} /><br/>
+        <TextArea type="text" placeholder="Please click here to begin typing..." 
+         required cols={50} rows={6} value={content} onChange={(e) => {handleContent(e)}} />
+          <br/>
               {/* when user write in content input box ,
                   handleContent() function will be called.*/}
         <input type="submit" value="Submit"/>

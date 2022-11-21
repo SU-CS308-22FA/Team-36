@@ -23,6 +23,10 @@
         background-color: adjust-hue($color: #97488dbb, $degrees: 0);
       } //not working
 
+      TextArea {
+        background-color: lightgrey;
+      }
+
       .sendreq-header {
         background-color: white;
         min-height: 100vh;

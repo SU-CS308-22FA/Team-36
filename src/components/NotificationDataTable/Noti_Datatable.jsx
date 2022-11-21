@@ -2,58 +2,73 @@ import "./Noti_Datatable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { noti_userColumns } from "../../notificationsDatatable";
 import { useEffect, useState } from "react";
-import { collection, getDocs, onSnapshot, query, where } from "firebase/firestore";
-//import { FirebaseAuth } from '@firebase/auth-types'
-import { auth, db } from "../../firebase";
+import { collection, getDocs, onSnapshot, query, where, doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase";
+import { getAuth, onAuthStateChanged  } from "firebase/auth";
+
+
 
 const Noti_Datatable = () => {
 
-  const user = auth.currentUser;
   const [data, setData] = useState([]);
-
-  const clubRef = collection(db, "requests");
-  //const clubName = collection(db, "users");
-  //const q = query(clubRef, where("SendTo", "==", user.uid));
-
+  
   useEffect(() => {
-    const fetchData = async () => {
-      let list = []
+   
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+    
+      const fetchData = async () => {
+      const docRef = doc(db, "users", user.uid);
+      
+      let docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+     
+        const q = query(collection(db, "requests"), where("SendTo", "==", docSnap.data().name)); 
+
+        let list = []
       try {
-        const querySnapshot = await getDocs(collection(db, "requests"));
+        const querySnapshot = await getDocs(q);
         querySnapshot.forEach((doc) => {
           list.push({ id: doc.id, ...doc.data()})
         });
         setData(list);
-        console.log(list)
       } catch(err){
         console.log(err);
       }
-    }; 
 
-
-    fetchData()
-
-    const unsub = onSnapshot(
-      collection(db, "requests"),
-      (snapShot) => {
-        let list = [];
-        snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        setData(list);
-      },
-      (error) => {
-        console.log(error);
+      const unsub = onSnapshot(
+        q,
+        (snapShot) => {
+          let list = [];
+          snapShot.docs.forEach((doc) => {
+            list.push({ id: doc.id, ...doc.data() });
+          });
+          setData(list);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    
+      return () => {
+        unsub();
+      };
+      } else {
+        console.log("No such document!");
       }
-    );
-
-    return () => {
-      unsub();
-    };
+      
+    }; 
+    fetchData()
+      } else {
+        console.log("User is not logged in");
+      }
+    });
+    
   }, []);
 
   console.log(data)
-
+   
   return (
     <div className="noti_datatable">
       <div className="noti_datatableTitle">

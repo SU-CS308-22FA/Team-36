@@ -25,7 +25,7 @@ function App() {
             <Route path="signup" element={<Signup />} />
             <Route path="edit" element={<RequireAuth><Edit /></RequireAuth>} />
             <Route path="sendreq" element={<SendReq/>} />
-            <Route path="notifications" element={<Notifications/>}/>
+            <Route path="notifications" element={<RequireAuth><Notifications/></RequireAuth>}/>
             <Route path="users">
               <Route
                 index
