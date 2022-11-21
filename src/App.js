@@ -7,6 +7,9 @@ import { AuthContext } from "./context/AuthContext";
 import Signup from "./pages/signup/Signup";
 import Deadline_setting from "./pages/deadline_setting/Deadline_setting";
 import Broadcasting_rights_distribution from "./pages/broadcasting_rights_distribution/Broadcasting_rights_distribution";
+import FedHome from "./pages/fedHome/FedHome";
+import ClubHome from "./pages/clubHome/ClubHome";
+import PlayerHome from "./pages/playerHome/PlayerHome";
 
 function App() {
 
@@ -26,6 +29,9 @@ function App() {
             <Route path="deadlinesfed" element={<Deadline_setting />} />
             <Route path="broadcasting-distribution" element={<Broadcasting_rights_distribution />} />
             <Route path="edit" element={<RequireAuth><Edit /></RequireAuth>} />
+            <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
+            <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
+            <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
             <Route path="users">
               <Route
                 index

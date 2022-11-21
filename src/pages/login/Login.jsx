@@ -24,16 +24,22 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user })
-        console.log("I am here1");
+        //console.log("I am here1");
 
         var thisuser = getDoc(doc(db, "users", user.uid));
         var role = (String) ((await thisuser).get("role"));
-        console.log(role +" I am here2");
+        //console.log(role +" I am here2");
         if (role == "Federation Representative") {
-          navigate("/deadlinesfed");
+          navigate("/fedhome");
+        }
+        else if(role == "Club"){
+          navigate("/clubhome");
+        }
+        else if(role == "Player"){
+          navigate("/playerhome");
         }
         else{
-          navigate("/users");
+          navigate("/");
         }
 
       })
