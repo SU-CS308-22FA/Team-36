@@ -11,9 +11,13 @@ const  RequestLeaving = () => {
 
     const [Name , setName] = useState('');
     const [textMotivation, setMotivation] = useState('');
+    const [club, setClub] = useState('');
 
     const handleName =(e)=>{
         setName(e.target.value);
+      }
+      const handleClub =(e)=>{
+        setClub(e.target.value);
       }
       const handleMotivation =(e)=>{
         setMotivation(e.target.value);
@@ -22,6 +26,7 @@ const  RequestLeaving = () => {
       const handleRequestLeaving = async (e)=>{
         e.preventDefault();
         await addDoc(collection(db, "requestToLeaving"), {
+          "club" : club,
           "Name": Name,
           "Motivation": textMotivation,
         });
@@ -43,10 +48,14 @@ const  RequestLeaving = () => {
         </label><br/>
         <input type="text"    defaultValue={user.email} required onChange={(e) => {handleName(e)}} /><br/>
         <label >
+        Club:
+        </label><br/>
+        <input type="text" placeholder="Club"  required onChange={(e) => {handleClub(e)}} /><br/>
+        <label >
         Motivation:
         </label><br/>
         <input type="text" placeholder="Insert motivation"  required onChange={(e) => {handleMotivation(e)}} /><br/>
-
+        <input type="submit" value="Submit"/>
 </form>
 </header>
 </div>

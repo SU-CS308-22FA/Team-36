@@ -18,8 +18,7 @@ const  PlayerToClubCom = () => {
         
     <div className="playertoclub">
         
-        <Navbar />
-    
+         
     <div className="title">Choose between:
  
           <button type="requestLeaving" onClick={sendToRequestLeaving}>Request leaving </button>
