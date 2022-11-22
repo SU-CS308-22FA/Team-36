@@ -1,17 +1,20 @@
 import "./upload_c.scss"
 import Navbar from "../../components/navbar/Navbar"
 import document from './document.png'
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../firebase";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
 import { useEffect, useState } from "react";
 import moment from "moment/moment";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 
 const Upload_c = () => {
 
+    const user = auth.currentUser;
     const [date, setDate] = useState();
     const [file, setFile] = useState("");
+    const [fileDoc, setFileDoc] = useState("")
     const storage = getStorage();
+    const [uploaded, setUploaded] = useState(false)
     const metadata = {
         contentType: 'application/pdf'
     };
@@ -64,8 +67,13 @@ const Upload_c = () => {
                 }
             },
             () => {
-                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
                     console.log('File available at', downloadURL);
+                    setFileDoc(downloadURL)
+                    await updateDoc(doc(db, "users", user.uid), {
+                        "document": downloadURL
+                    });
+                    setUploaded(true)
                 });
             });
     }
@@ -75,19 +83,32 @@ const Upload_c = () => {
             <Navbar />
             <div className="center">
                 <div className="container">
-                    <h2>Deadline:</h2><span>{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</span>
-                    <div className="block">
-                        <h1>Upload Document</h1>
-                        <img src={document}></img>
-                        <label className="file">
-                            Choose
-                            <input type="file" onChange={handleChange}/>
-                        </label>
-                        {
-                            file &&
-                            <label className="file" onClick={handleUpload}>Upload!</label>
-                        }
-                    </div>
+                    <h2 className="deadline">Deadline:</h2><span className="time">{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                    {
+                        !uploaded &&
+                        <div className="block">
+                            <h1>Upload Document</h1>
+                            <img src={document}></img>
+                            <label className="file">
+                                Choose
+                                <input type="file" onChange={handleChange} />
+                            </label>
+                            {
+                                file &&
+                                <label className="file" onClick={handleUpload}>Upload!</label>
+                            }
+                        </div>
+                    }
+                    {
+                        uploaded &&
+                        <iframe className="pdf"
+                            src={fileDoc}
+                            frameBorder="0"
+                            scrolling="auto"
+                            height="100%"
+                            width="100%"
+                        ></iframe>
+                    }
                 </div>
             </div>
         </div>
