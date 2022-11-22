@@ -123,6 +123,7 @@ const Broadcasting_rights_distribution = () => {
             
             <h1>Percentages Distribution</h1>
             <PercDatatable/>
+            <span>Fedration Will take {fedPerc}% of the broadcasting rights</span>
             
         </div>}
       </div>
