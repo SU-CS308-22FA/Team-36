@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Signup from "./pages/signup/Signup";
+import SendReq from "./pages/sendreq/SendReq";
+import Notifications from "./pages/notifications/notifications";
 import Deadline_setting from "./pages/deadline_setting/Deadline_setting";
 import Broadcasting_rights_distribution from "./pages/broadcasting_rights_distribution/Broadcasting_rights_distribution";
 import FedHome from "./pages/fedHome/FedHome";
@@ -29,6 +31,8 @@ function App() {
             <Route path="deadlinesfed" element={<Deadline_setting />} />
             <Route path="broadcasting-distribution" element={<Broadcasting_rights_distribution />} />
             <Route path="edit" element={<RequireAuth><Edit /></RequireAuth>} />
+            <Route path="sendreq" element={<SendReq/>} />
+            <Route path="notifications" element={<RequireAuth><Notifications/></RequireAuth>}/>
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
             <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
             <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
@@ -41,6 +45,7 @@ function App() {
                   </RequireAuth>
                 }
               />
+              
             </Route>
           </Route>
         </Routes>
