@@ -7,25 +7,27 @@
       padding: 30px;
 
       label {
-        margin: 1px;
+        font-weight: bold;
       }
 
       input {
         width: 200px;
         height: 30px;
-        margin: 10px;
+        margin: 5px;
       }
-      button {
-        background-color: purple;
-      }  //not working
-
-      button:disabled {
-        background-color: adjust-hue($color: #97488dbb, $degrees: 0);
-      } //not working
 
       TextArea {
         background-color: lightgrey;
       }
+
+      button {
+
+        width: 200px;
+        height: 30px;
+        text-align: center;
+      }
+
+      select {margin: 5px}
 
       .sendreq-header {
         background-color: white;

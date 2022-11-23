@@ -4,6 +4,7 @@ import { db} from "../../firebase";
 import { addDoc, collection } from "firebase/firestore";
 import './SendReq.scss';
 import { TextArea } from '@react-ui-org/react-ui';
+import Navbar from '../../components/navbar/Navbar';
  
 const SendReq = () => {
     const [wtype , setType] = useState('');
@@ -61,10 +62,11 @@ const SendReq = () => {
   return (
     <div className="sendreq">
     <header className="sendreq-header">
+      <Navbar/>
     <form onSubmit={(e) => {handleSubmit(e)}}>
      {/*when user submit the form , handleSubmit()
         function will be called .*/}
-    <h2> Federation Warning and Request Form </h2>
+    <h2> Warning and Request Form </h2>
         <label >
           Type:
         </label><br/>
@@ -101,7 +103,7 @@ const SendReq = () => {
           <br/>
               {/* when user write in content input box ,
                   handleContent() function will be called.*/}
-        <input type="submit" value="Submit"/>
+        <button type="submit" value="Submit"> Submit </button>
       </form>
     </header>
     </div>
