@@ -51,7 +51,7 @@ const FedSidebar = () => {
               <span>Broadcasting Rights</span>
             </li>
           </Link>
-          <Link to="/fedhome" style={{ textDecoration: "none" }}>
+          <Link to="/sendreq" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Send Request to Clubs</span>

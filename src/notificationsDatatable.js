@@ -17,7 +17,7 @@ export const noti_userColumns = [
   {
     field: "content",
     headerName: "Description",
-    width: 500,
+    width: 1000,
     height: 300
   },
 

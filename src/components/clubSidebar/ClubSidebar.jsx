@@ -33,10 +33,10 @@ const ClubSidebar = () => {
             <span>Home</span>
           </li>
           </Link>
-          <Link to="/clubhome" style={{ textDecoration: "none" }}>
+          <Link to="/notifications" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Federation Notifications</span>
+              <span>Alerts and Notifications</span>
             </li>
           </Link>
           <Link to="/clubhome" style={{ textDecoration: "none" }}>
