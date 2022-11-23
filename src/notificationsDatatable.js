@@ -20,5 +20,5 @@ export const noti_userColumns = [
     width: 500,
     height: 300
   },
-  
+
 ];

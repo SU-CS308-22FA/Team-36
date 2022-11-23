@@ -5,13 +5,8 @@ export const userColumns = [
     width: 200
   },
   {
-    field: "name",
-    headerName: "Name",
-    width: 230,
-  },
-  {
-    field: "role",
-    headerName: "Role",
+    field: "Club Name",
+    headerName: "Club Name",
     width: 230,
   },
   {
