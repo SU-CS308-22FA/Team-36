@@ -6,6 +6,7 @@ import { auth, db } from "../../firebase";
 import { useEffect, useState } from "react";
 import moment from "moment/moment";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import dayjs from "dayjs";
 
 const Upload_c = () => {
 
@@ -26,11 +27,11 @@ const Upload_c = () => {
         const docRef = doc(db, "DocSubDeadlines", "TheYearlyDeadline");
         let docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
-            docSnap = new Date(docSnap.data().DateTime)
-            setDate(docSnap)
-            let current = new Date();
-            if (current >= date) {
-                console.log("this is " + current >= date)
+            docSnap = dayjs(docSnap.data().DateTime).subtract(3, 'h')
+            setDate(docSnap.format("DD-MM-YYYY hh:mm:ss a"))
+            console.log(dayjs().diff() > dayjs(docSnap).diff())
+            if (dayjs().diff() > dayjs(docSnap).diff()) {
+                console.log("this is ")
                 setDeadline_past(true)
             }
             // console.log("Document data:", date);
@@ -89,7 +90,7 @@ const Upload_c = () => {
             <Navbar />
             <div className="center">
                 <div className={!uploaded ? "container" : "container_u"} >
-                    <h2 className="deadline">Deadline:</h2><span className={deadline_past ? "late" : "time"}>{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                    <h2 className="deadline">Deadline:</h2><span className={deadline_past ? "late" : "time"}>{date}</span>
                     {
                         !uploaded &&
                         <div className={deadline_past ? "past" : "block"}>
