@@ -39,7 +39,7 @@ const ClubSidebar = () => {
               <span>Alerts and Notifications</span>
             </li>
           </Link>
-          <Link to="/clubhome" style={{ textDecoration: "none" }}>
+          <Link to="/upload_c" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Document Upload</span>
