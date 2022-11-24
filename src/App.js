@@ -5,7 +5,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Signup from "./pages/signup/Signup";
-import SendReq from "./pages/sendreq/SendReq";
 import Notifications from "./pages/notifications/notifications";
 import ClubToPlayerCom from "./pages/clubtoplayercom/ClubToPlayerCom";
 import AddPlayers from "./pages/addplayers/AddPlayers";
