@@ -13,7 +13,6 @@ import PlayerToClub from "./pages/playertoclubcom/PlayerToClubCom";
 import Renewing from "./pages/renewing/Renewing";
 import RequestLeaving from "./pages/requestLeaving/RequestLeaving";
 import SendReq from "./pages/sendreq/SendReq";
-import Notifications from "./pages/notifications/notifications";
 import Deadline_setting from "./pages/deadline_setting/Deadline_setting";
 import Broadcasting_rights_distribution from "./pages/broadcasting_rights_distribution/Broadcasting_rights_distribution";
 import FedHome from "./pages/fedHome/FedHome";
