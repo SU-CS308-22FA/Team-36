@@ -15,18 +15,181 @@
         .deadline {
             margin-bottom: -20rem;
         }
+        
         .time {
             margin-bottom: 0;
         }
+        
+        .late {
+            margin-bottom: 0;
+            color: red;
+        }
+
         .pdf {
             margin-bottom: 10rem;
         }
+
         .block {
             display: grid;
             // flex-direction: column;
             // justify-content: end;
             place-items: center;
-            background-color: rgb(172, 162, 219);
+            background-color: rgb(184, 0, 0);
+            padding: 1.5rem;
+            border-radius: 20px;
+            // height: 30%;
+            // width: 30%;
+            color: whitesmoke;
+            border: dashed;
+            border-color: white;
+            margin-bottom: 10rem;
+            margin-top: -10rem;
+
+            h1 {
+                // padding-left: 25%;
+                position: relative;
+                // top: 0;
+                // padding-bottom: 1.8in;
+            }
+
+            input[type="file"] {
+                display: none;
+                // cursor: pointer;
+            }
+
+            img {
+                height: 90%;
+                width: 30%;
+                // margin-left: 35%;
+            }
+
+            .file {
+                // < !-- HTML !--><button class="button-54" role="button">Button 54</button>
+                /* CSS */
+                font-family: "Open Sans", sans-serif;
+                font-size: 16px;
+                letter-spacing: 2px;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: whitesmoke;
+                cursor: pointer;
+                border: 3px solid;
+                box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                margin-top: 1rem;
+                // margin-bottom: 2%;
+                width: 80px;
+            }
+
+            .file:active {
+                box-shadow: 0px 0px 0px 0px;
+                top: 5px;
+                left: 5px;
+            }
+
+            @media (min-width: 768px) {
+                .file {
+                    padding: 0.25em 0.75em;
+                }
+            }
+        }
+
+        .past {
+            display: grid;
+            // flex-direction: column;
+            // justify-content: end;
+            place-items: center;
+            background-color: rgba(102, 102, 102, 0.39);
+            padding: 1.5rem;
+            border-radius: 20px;
+            // height: 30%;
+            // width: 30%;
+            color: whitesmoke;
+            border: dashed;
+            border-color: white;
+            margin-bottom: 10rem;
+            margin-top: -10rem;
+
+            h1 {
+                // padding-left: 25%;
+                position: relative;
+                // top: 0;
+                // padding-bottom: 1.8in;
+            }
+
+            input[type="file"] {
+                display: none;
+                // cursor: pointer;
+            }
+
+            img {
+                height: 90%;
+                width: 30%;
+                // margin-left: 35%;
+            }
+
+            .file {
+                // < !-- HTML !--><button class="button-54" role="button">Button 54</button>
+                /* CSS */
+                font-family: "Open Sans", sans-serif;
+                font-size: 16px;
+                letter-spacing: 2px;
+                text-decoration: none;
+                text-transform: uppercase;
+                color: whitesmoke;
+                cursor: pointer;
+                border: 3px solid;
+                box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+                user-select: none;
+                -webkit-user-select: none;
+                touch-action: manipulation;
+                margin-top: 1rem;
+                // margin-bottom: 2%;
+                width: 80px;
+            }
+
+            .file:active {
+                box-shadow: 0px 0px 0px 0px;
+                top: 5px;
+                left: 5px;
+            }
+
+            @media (min-width: 768px) {
+                .file {
+                    padding: 0.25em 0.75em;
+                }
+            }
+        }
+    }
+
+    .container_u {
+        display: grid;
+        place-items: center;
+        // justify-content: center;
+        // align-items: center;
+        height: 100%;
+        width: 50%;
+
+        .deadline {
+            margin-bottom: -20rem;
+        }
+
+        .time {
+            margin-bottom: 0;
+        }
+
+        .pdf {
+            margin-bottom: 10rem;
+        }
+
+        .block {
+            display: grid;
+            // flex-direction: column;
+            // justify-content: end;
+            place-items: center;
+            background-color: rgb(156, 4, 4);
             padding: 1.5rem;
             border-radius: 20px;
             // height: 30%;

@@ -15,6 +15,7 @@ const Upload_c = () => {
     const [fileDoc, setFileDoc] = useState("")
     const storage = getStorage();
     const [uploaded, setUploaded] = useState(false)
+    const [deadline_past, setDeadline_past] = useState(false);
     const metadata = {
         contentType: 'application/pdf'
     };
@@ -27,6 +28,11 @@ const Upload_c = () => {
         if (docSnap.exists()) {
             docSnap = new Date(docSnap.data().DateTime)
             setDate(docSnap)
+            let current = new Date();
+            if (current >= date) {
+                console.log("this is " + current >= date)
+                setDeadline_past(true)
+            }
             // console.log("Document data:", date);
         } else {
             // doc.data() will be undefined in this case
@@ -82,16 +88,16 @@ const Upload_c = () => {
         <div>
             <Navbar />
             <div className="center">
-                <div className="container">
-                    <h2 className="deadline">Deadline:</h2><span className="time">{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                <div className={!uploaded ? "container" : "container_u"} >
+                    <h2 className="deadline">Deadline:</h2><span className={deadline_past ? "late" : "time"}>{moment(date).format('MMMM Do YYYY, h:mm:ss a')}</span>
                     {
                         !uploaded &&
-                        <div className="block">
+                        <div className={deadline_past ? "past" : "block"}>
                             <h1>Upload Document</h1>
                             <img src={document}></img>
-                            <label className="file">
+                            <label className="file" >
                                 Choose
-                                <input type="file" onChange={handleChange} />
+                                <input type="file" onChange={handleChange} disabled={deadline_past}/>
                             </label>
                             {
                                 file &&
