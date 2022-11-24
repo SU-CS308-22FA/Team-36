@@ -45,7 +45,7 @@ const ClubSidebar = () => {
               <span>Document Upload</span>
             </li>
           </Link>
-          <Link to="/clubhome" style={{ textDecoration: "none" }}>
+          <Link to="/clubtoplayercom" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>Send Player Contract Renewal</span>
