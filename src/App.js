@@ -5,6 +5,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 import Signup from "./pages/signup/Signup";
+import DocMonitoring from "./pages/docMonitoring/DocMonitoring";
+import PlayerFedCom from "./pages/playerFedCom/PlayerFedCom";
 
 function App() {
 
@@ -21,6 +23,8 @@ function App() {
           <Route path="/">
             <Route path="" element={<Login />} />
             <Route path="signup" element={<Signup />} />
+            <Route path="playerFedCom" element={<PlayerFedCom />} />
+            <Route path="docMonitoring" element={<DocMonitoring />} />
             <Route path="edit" element={<RequireAuth><Edit /></RequireAuth>} />
             <Route path="users">
               <Route
