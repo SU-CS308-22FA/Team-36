@@ -12,6 +12,7 @@ import Broadcasting_rights_distribution from "./pages/broadcasting_rights_distri
 import FedHome from "./pages/fedHome/FedHome";
 import ClubHome from "./pages/clubHome/ClubHome";
 import PlayerHome from "./pages/playerHome/PlayerHome";
+import Upload_c from "./pages/club_upload/Upload_c";
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
               />
               
             </Route>
+            <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
           </Route>
         </Routes>
       </BrowserRouter>
