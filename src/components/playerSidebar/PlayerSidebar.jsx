@@ -39,7 +39,7 @@ const PlayerSidebar = () => {
               <span>National Team Callup</span>
             </li>
           </Link>
-          <Link to="/deadlinesfed" style={{ textDecoration: "none" }}>
+          <Link to="/playertoclub" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
               <span>View Club Contract Renewal</span>
