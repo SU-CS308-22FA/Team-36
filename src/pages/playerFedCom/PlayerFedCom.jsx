@@ -1,37 +1,83 @@
 import "./PlayerFedCom.scss"
 import Navbar from "../../components/navbar/Navbar"
 import { db } from "../../firebase"
-import { useEffect } from "react"
-import { useState } from "react"
-import { collection, getDocs } from "firebase/firestore"
+import { useState, useEffect } from "react"
+import { collection, getDocs, setData, updateDoc } from "firebase/firestore"
+import { getAuth } from "firebase/auth"
 
-const PlayerFedCom = () => {
+function PlayerFedCom()  {
 
+    
+    const auth = getAuth();
     const [users, setUsers] = useState([]);
-    const callUps = collection(db, "National Team Callups")
+    const [selected, setSelected] = useState(false);
+    const callUps = collection(db, "National Team Callups");
+    const [data, setData] = useState([]);
 
     useEffect(() => {
+        const fetchData = async () => {
+          let list = []
+          try {
+            const querySnapshot = await getDocs(collection(db, "users"));
+            querySnapshot.forEach((doc) => {
+              list.push({ id: doc.id, ...doc.data()})
+            });
+            setData(list);
+            console.log(list)
+          } catch(err){
+            console.log(err);
+          }
+        }; 
     
-        const getCallUp = async () => {
+        fetchData()
+      }, []);
 
-            const data = await getDocs(callUps);
-            setUsers(data.docs.map((doc) => ({...doc.data()})));
-            
-        };
+      //console.log(data);
 
-        getCallUp();
-    }, ); 
+    function handleSelect(data) {
+        setSelected(data);
+    };
+    
+
+    const getCallUp = async () => {
+
+        const data = await getDocs(callUps);
+        setUsers(data.docs.map((doc) => ({...doc.data()})));
+
+        console.log("getCallUp");
+        
+    };
+
+        
+
+    getCallUp();
+
+    
+
+    const handleStatus = (e) =>{
+        if(e.target.value == "Accecpt"){
+            setSelected = true;
+        }
+        else if(e.target.value == "Reject"){
+            setSelected = false;
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        await updateDoc
+    }
 
     return (
-      <div className="PlayerFedCom">
+    <div className="PlayerFedCom">
             <Navbar/>
             <h2>National Callup</h2>
             <br />
             <body>
                 <div>
                     {users.map ((user) => {
-                         return (
-                         <div> 
+                        return (
+                        <div> 
                             <div> 
                                 <h3>Name: {user.PlayerName}</h3> 
                             </div>
@@ -41,22 +87,27 @@ const PlayerFedCom = () => {
                                 <h4>{user.Offer}</h4>
                             </div>
                             <br />
-                            <div> 
+                            <form onSubmit={(e) => {handleSubmit(e)}}> 
                                 <h3>Accecpt or Reject:</h3>
-                                <select id="userResponse">
+                                <select name="status" id="status_select" required onChange = {(e) => {handleStatus(e)}}>
+                                    <option value="" selected disable hidde>----Please choose option----</option>
                                     <option value="Accecpt">Accecpt</option>
                                     <option value="Reject">Reject</option>
                                 </select>
-                                <button class="selectOption">Select Option</button>
-                            </div>
-                         </div>
-                         )
+                                <button  class="selectOption">Select Option</button>
+                            </form>
+                            
+                        </div>
+                        )
+
                     })}
+                    
                 </div>
             </body>
-      </div>
-      
+    </div>
+    
     )
-  }
+                    
+}
   
-  export default PlayerFedCom
+export default PlayerFedCom;
