@@ -13,13 +13,14 @@ import { async } from '@firebase/util';
 
 const  Renewing = () => {
 
+  const user = auth.currentUser;
     const [namePlayer , setName] = useState('');
     const [title, setData] = useState('');
     const [from , setSalary] = useState('');
     const Player = auth.currentPlayers;
 
     const handleName =(e)=>{
-      setName(e.target.value);
+      setName(user.email);
     }
     const handleData =(e)=>{
       setData(e.target.value);
@@ -39,7 +40,7 @@ const  Renewing = () => {
         "Salary proposal": from,
       });
         alert();
-        setName("");
+        setName(user.email);
         setData("");
         setSalary("");
     }
@@ -64,7 +65,7 @@ const  Renewing = () => {
         <label >
         Name:
         </label><br/>
-        <input type="text" placeholder="Name Lastname" value={namePlayer} required onChange={(e) => {handleName(e)}} /><br/>
+        <input type="text" placeholder="Name Lastname"defaultValue={user.email}  onChange ={(e)=>{setName(user.email)}}/><br/>
         <label >
         New contract expiration:
         </label><br/>
