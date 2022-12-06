@@ -5,14 +5,13 @@ import { useState, useEffect } from "react"
 import { collection, getDocs, setData, updateDoc } from "firebase/firestore"
 import { getAuth } from "firebase/auth"
 
-function PlayerFedCom()  {
+export default function PlayerFedCom()  {
 
-    
     const auth = getAuth();
     const [users, setUsers] = useState([]);
     const [selected, setSelected] = useState(false);
     const callUps = collection(db, "National Team Callups");
-    const [data, setData] = useState([]);
+    const [setData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -37,22 +36,6 @@ function PlayerFedCom()  {
     function handleSelect(data) {
         setSelected(data);
     };
-    
-
-    const getCallUp = async () => {
-
-        const data = await getDocs(callUps);
-        setUsers(data.docs.map((doc) => ({...doc.data()})));
-
-        console.log("getCallUp");
-        
-    };
-
-        
-
-    getCallUp();
-
-    
 
     const handleStatus = (e) =>{
         if(e.target.value == "Accecpt"){
@@ -76,7 +59,7 @@ function PlayerFedCom()  {
             <body>
                 <div>
                     {users.map ((user) => {
-                        return (
+                        return(
                         <div> 
                             <div> 
                                 <h3>Name: {user.PlayerName}</h3> 
@@ -96,12 +79,9 @@ function PlayerFedCom()  {
                                 </select>
                                 <button  class="selectOption">Select Option</button>
                             </form>
-                            
                         </div>
                         )
-
                     })}
-                    
                 </div>
             </body>
     </div>
@@ -109,5 +89,3 @@ function PlayerFedCom()  {
     )
                     
 }
-  
-export default PlayerFedCom;
