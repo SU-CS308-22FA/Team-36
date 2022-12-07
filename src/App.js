@@ -19,6 +19,8 @@ import FedHome from "./pages/fedHome/FedHome";
 import ClubHome from "./pages/clubHome/ClubHome";
 import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
+import Transfers from "./pages/transfers/Transfers"
+import SendTransferOffer from "./pages/sendTransferOffer/SendTransferOffer"
 
 function App() {
 
@@ -51,6 +53,8 @@ function App() {
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
             <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
             <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
+            <Route path="transfers" element={<Transfers/>} />
+            <Route path="sendoffer" element={<SendTransferOffer/>} />
             <Route path="users">
 
               <Route
