@@ -20,3 +20,26 @@ export const userColumns = [
     width: 230,
   }
 ];
+
+export const PlayersColumns = [
+  {
+    field: "Name",
+    headerName: "Name",
+    width: 230,
+  },
+  {
+    field: "Contract expiration",
+    headerName: "Contract expiration",
+    width: 230,
+  },
+  {
+    field: "Salary",
+    headerName: "Salary",
+    width: 200
+  },
+  {
+    field: "Delete",
+    headerName: "Delete",
+    width: 200
+  },
+];
