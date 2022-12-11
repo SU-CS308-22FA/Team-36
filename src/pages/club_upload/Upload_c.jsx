@@ -4,7 +4,6 @@ import document from './document.png'
 import { doc, getDoc, updateDoc } from "firebase/firestore";
 import { auth, db } from "../../firebase";
 import { useEffect, useState } from "react";
-import moment from "moment/moment";
 import { getStorage, ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import dayjs from "dayjs";
 
