@@ -19,6 +19,8 @@ import FedHome from "./pages/fedHome/FedHome";
 import ClubHome from "./pages/clubHome/ClubHome";
 import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
+import ClubStadiumApp from "./pages/clubStadiumApp/ClubStadiumApp";
+import FedStadiumApp from "./pages/fedStadiumApp/FedStadiumApp";
 
 function App() {
 
@@ -63,6 +65,9 @@ function App() {
               />
             </Route>
             <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
+            <Route path="stadiumclub" element={<RequireAuth> <ClubStadiumApp /> </RequireAuth>} />
+            <Route path="stadiumfed" element={<FedStadiumApp />} />
+
           </Route>
         </Routes>
       </BrowserRouter>
