@@ -26,7 +26,7 @@ import { Navigate } from "react-router-dom";
 const ClubStadiumApp = () => {
 
     const [stadiums, SetStadiums] = useState([]);
-    const [selectedStadium, setSelectedStadium] = useState("Select Stadium");
+    const [selectedStadium, setSelectedStadium] = useState("Stadium1");
     const [resDate, setResDate] = useState(dayjs("2023-01-01"))
     let ignore = false;
     let userName = "";
@@ -45,7 +45,7 @@ const ClubStadiumApp = () => {
                 let newreservs ="";
                 console.log("got resvs");
                 oldreservs.forEach((res) => {
-                    let date = dayjs(res.split(",")[0]);
+                    let date = dayjs(res.split(",")[0].slice(1));
                     if(date.diff() > dayjs().diff()){
                         newreservs += res +";"
                     }
@@ -91,15 +91,17 @@ const ClubStadiumApp = () => {
         let canReserve = true;
         let docref = doc(db, "Stadiums", selectedStadium);
         let docsnap  = await getDoc(docref);
+        try{
         let resrvs = docsnap.data().Reservations.split(";");
         resrvs.forEach(async (res) => {
-            let date = dayjs(res.split(",")[0]);
+            let date = dayjs(res.split(",")[0].slice(1));
             if(date.add(7,"day") >= resDate && resDate >= date.subtract(7,"day"))
             {
                 console.log("HERE");
                 canReserve = false;
             }
         });
+    }catch{}
             if(canReserve){ 
                 //userName = docSnap.data().name;
                 const auth = getAuth();
@@ -120,7 +122,11 @@ const ClubStadiumApp = () => {
                         });
                         //setUserName(name);
                         console.log(userName);
-                        await updateDoc(docref, "Reservations",docsnap.data().Reservations + ";" + resDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')+ ","+userName);
+                        try{
+                            await updateDoc(docref, "Reservations",docsnap.data().Reservations + ";U" + resDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')+ ","+userName);
+                        }catch{
+                            await updateDoc(docref, "Reservations","U" + resDate.format('YYYY-MM-DDTHH:mm:ss.SSS[Z]')+ ","+userName);
+                        }
                         }; 
                         await fetchData().then(()=> {window.location.reload();});
                 }});               

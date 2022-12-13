@@ -66,7 +66,7 @@ function App() {
             </Route>
             <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
             <Route path="stadiumclub" element={<RequireAuth> <ClubStadiumApp /> </RequireAuth>} />
-            <Route path="stadiumfed" element={<FedStadiumApp />} />
+            <Route path="stadiumfed" element={<RequireAuth><FedStadiumApp /></RequireAuth>} />
 
           </Route>
         </Routes>
