@@ -9,6 +9,7 @@ import dayjs from "dayjs";
 import { TextArea } from '@react-ui-org/react-ui';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
+
 const FedStadiumApp = () => {
   const [data, setData] = useState([]);
   const [showRes, setShowRes] = useState(false);
@@ -215,7 +216,7 @@ const handleDisapprove = async (resrv) => {
       
       <div className="fedStadiumAppContainer">
         <Navbar/>
-        
+        <div className="inside">
         <form onSubmit={(e) => {handleSubmit(e)}}>
                 <label>Choose a Stadium to View:</label>
                 <select
@@ -236,16 +237,19 @@ const handleDisapprove = async (resrv) => {
         {data.map((reserv) => (
           <div className="oneRes">
             <h3>{reserv.date} Reserved by {reserv.club}</h3>
+            <div className="ResButtons">
             <button className="Approve" onClick={(e) => {setSelectedReserv(reserv); handleApprove(reserv);}}>Approve</button>
             <button className="Disapprove" onClick={()=> {setShowMsgBox(true); setSelectedReserv(reserv)}}>Disapprove</button><br/>
-            
+            </div>
             {showMsgBox && (selectedReserv==reserv) &&
             <div className="MSGBox">
             <label>
               Disapprove Message:
-            </label><br/>
+            </label>
+            
             <TextArea type="text" placeholder="Please click here to begin typing..." 
             required cols={50} rows={6} value={disapproveMsg} onChange={(e) => {setDisapproveMsg(e.target.value)}} />
+            
             <button className="DisapproveSend" onClick={(e)=>{handleDisapprove(reserv)}}>Send</button>
             </div>}
 
@@ -254,7 +258,7 @@ const handleDisapprove = async (resrv) => {
         </div>
         }
         {data.length==0 && noRes && <span>There Are No Reservations To Approve or Disapprove</span>}
-
+        </div>
       </div>
     </div>
   )

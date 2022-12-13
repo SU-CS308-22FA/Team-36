@@ -168,6 +168,7 @@ const ClubStadiumApp = () => {
             
             <div className="clubStadiumAppContainer">
                 <Navbar/>
+                <div className="inside">
                 {/* <span>{stadiums.length}</span> */}
                 {stadiums.length!=0 &&
                 <form onSubmit={handleSubmit}>
@@ -203,6 +204,7 @@ const ClubStadiumApp = () => {
                 {stadiums.length == 0 &&
                 <span>The stadiums might all be busy currently</span>
                 }
+                </div>
             </div>
                         
             
