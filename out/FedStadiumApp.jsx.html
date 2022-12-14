@@ -1,4 +1,32 @@
-import "./fedStadiumApp.scss"
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: FedStadiumApp.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: FedStadiumApp.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import "./fedStadiumApp.scss"
 import Navbar from "../../components/navbar/Navbar"
 import { useState } from "react";
 import { useEffect } from "react";
@@ -199,8 +227,8 @@ const updateApproval = async (Status, resrvs) => {
           let date = dayjs(res.split(",")[0].slice(1)).subtract(3,"hour").format("YYYY-MM-DD HH:00");
           let name = res.split(",")[1];
           console.log(resrvs.date + "{}" + date + "{}" + resrvs.club + "{}" + name);
-          console.log(resrvs.date == date && resrvs.club == name);
-          if(resrvs.date == date && resrvs.club == name){
+          console.log(resrvs.date == date &amp;&amp; resrvs.club == name);
+          if(resrvs.date == date &amp;&amp; resrvs.club == name){
               
               newreservs += Status + res.slice(1) +";"
           }else{
@@ -237,56 +265,78 @@ const handleDisapprove = async (resrv) => {
 
 
   return (
-    <div className="fedStadiumApp">
+    &lt;div className="fedStadiumApp">
       
-      <div className="fedStadiumAppContainer">
-        <Navbar/>
-        <div className="inside">
-        <form onSubmit={(e) => {handleSubmit(e)}}>
-                <label>Choose a Stadium to View:</label>
-                <select
+      &lt;div className="fedStadiumAppContainer">
+        &lt;Navbar/>
+        &lt;div className="inside">
+        &lt;form onSubmit={(e) => {handleSubmit(e)}}>
+                &lt;label>Choose a Stadium to View:&lt;/label>
+                &lt;select
                 value={selectedStadium} 
                 required 
                 onChange={handleSelect}>
-                    <option value= "" selected disabled hidde>--- Please Choose an Option ---</option>
+                    &lt;option value= "" selected disabled hidde>--- Please Choose an Option ---&lt;/option>
                     {stadiums.map((stad) => (
-                        <option value={stad.value}>{stad.label}</option>
+                        &lt;option value={stad.value}>{stad.label}&lt;/option>
                     ))}
-                </select>
-                <button type="Submit">View Reservations</button>
-                {/* <span>{dayjs("A2002-02-02").format("YYYY-MM-DDTHH:mm:ssZ")}</span> */}
-        </form>
+                &lt;/select>
+                &lt;button type="Submit">View Reservations&lt;/button>
+                {/* &lt;span>{dayjs("A2002-02-02").format("YYYY-MM-DDTHH:mm:ssZ")}&lt;/span> */}
+        &lt;/form>
         
-        {data.length!=0 &&
-        <div className="Reservations">
+        {data.length!=0 &amp;&amp;
+        &lt;div className="Reservations">
         {data.map((reserv) => (
-          <div className="oneRes">
-            <h3>{reserv.date} Reserved by {reserv.club}</h3>
-            <div className="ResButtons">
-            <button className="Approve" onClick={(e) => {setSelectedReserv(reserv); handleApprove(reserv);}}>Approve</button>
-            <button className="Disapprove" onClick={()=> {setShowMsgBox(true); setSelectedReserv(reserv)}}>Disapprove</button><br/>
-            </div>
-            {showMsgBox && (selectedReserv==reserv) &&
-            <div className="MSGBox">
-            <label>
+          &lt;div className="oneRes">
+            &lt;h3>{reserv.date} Reserved by {reserv.club}&lt;/h3>
+            &lt;div className="ResButtons">
+            &lt;button className="Approve" onClick={(e) => {setSelectedReserv(reserv); handleApprove(reserv);}}>Approve&lt;/button>
+            &lt;button className="Disapprove" onClick={()=> {setShowMsgBox(true); setSelectedReserv(reserv)}}>Disapprove&lt;/button>&lt;br/>
+            &lt;/div>
+            {showMsgBox &amp;&amp; (selectedReserv==reserv) &amp;&amp;
+            &lt;div className="MSGBox">
+            &lt;label>
               Disapprove Message:
-            </label>
+            &lt;/label>
             
-            <TextArea type="text" placeholder="Please click here to begin typing..." 
+            &lt;TextArea type="text" placeholder="Please click here to begin typing..." 
             required cols={50} rows={6} value={disapproveMsg} onChange={(e) => {setDisapproveMsg(e.target.value)}} />
             
-            <button className="DisapproveSend" onClick={(e)=>{handleDisapprove(reserv)}}>Send</button>
-            </div>}
+            &lt;button className="DisapproveSend" onClick={(e)=>{handleDisapprove(reserv)}}>Send&lt;/button>
+            &lt;/div>}
 
-          </div>
+          &lt;/div>
         ))}  
-        </div>
+        &lt;/div>
         }
-        {data.length==0 && noRes && <span>There Are No Reservations To Approve or Disapprove</span>}
-        </div>
-      </div>
-    </div>
+        {data.length==0 &amp;&amp; noRes &amp;&amp; &lt;span>There Are No Reservations To Approve or Disapprove&lt;/span>}
+        &lt;/div>
+      &lt;/div>
+    &lt;/div>
   )
 }
 
-export default FedStadiumApp
+export default FedStadiumApp</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#sendMessage">sendMessage</a></li><li><a href="global.html#updateApproval">updateApproval</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.0</a> on Wed Dec 14 2022 19:49:58 GMT+0300 (غرينتش+٠٣:٠٠)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
