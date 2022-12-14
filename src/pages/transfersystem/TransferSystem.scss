@@ -1,0 +1,20 @@
+.TransferSystemHome {
+    display: flex;
+    .TransferSystem {
+        height: 100vh;
+        flex: 10;  
+        align-items: center;
+        justify-content: center;
+        
+        .inside{
+          height: 90vh;
+          display: flex;  
+          align-items: center;
+          justify-content: center;
+          
+          
+          
+          }
+  
+      }
+}
