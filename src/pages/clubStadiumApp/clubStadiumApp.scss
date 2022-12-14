@@ -1,0 +1,39 @@
+.clubStadiumApp {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: 100%;
+    .clubStadiumAppContainer {
+        height: 100vh;
+        flex: 10;  
+        align-items: center;
+        justify-content: center;
+
+        .inside{
+            height: 90vh;
+            display: flex;  
+            align-items: center;
+            justify-content: center;
+
+            form{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                label{
+                    margin-bottom: 10px;
+
+                }
+                h2{
+                    margin-top: 50px;
+                    margin-bottom: 10px;
+                }
+                button{
+                    margin: 10px;
+                }
+                
+            }
+    }
+  }
+}

@@ -63,6 +63,12 @@ const FedSidebar = () => {
               <span>Clubs' Documents</span>
             </li>
           </Link>
+          <Link to="/stadiumfed" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Stadium Reservations View</span>
+            </li>
+          </Link>
           
           
         </ul>

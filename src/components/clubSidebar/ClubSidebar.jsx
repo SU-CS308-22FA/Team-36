@@ -51,7 +51,12 @@ const ClubSidebar = () => {
               <span>Send Player Contract Renewal</span>
             </li>
           </Link>
-          
+          <Link to="/stadiumclub" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Stadium Reservation</span>
+            </li>
+          </Link>
           
           
         </ul>
