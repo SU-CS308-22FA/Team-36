@@ -7,6 +7,74 @@ import { db, auth } from "../../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import * as React from 'react';
 
+/**
+ * A function to update the decision data field of a transfer offer to "OFFER ACCEPTED".
+ * 
+ * @param {Event} e - Event Handling Object
+ * @param {string} deci - The decision the selling club takes regarding the offer received
+ * @param {string} from - The name of the club who sent the transfer offer
+ * @param {string} to - The player that the buying club wants to buy/sign on loan
+ */
+
+const handleAccept = async (e, deci, from, to) => { 
+    e.preventDefault();
+    let q_decision = query(collection(db, "transferOffers"), where("decision", "==", deci));
+    let q_club = query(q_decision, where("buyingClub", "==", from));
+    let q_player = query(q_club, where("player", "==", to));
+
+    let specificOffer = await getDocs(q_player);
+
+    specificOffer.forEach(async (offer) => {
+        await updateDoc(offer.ref, "decision", "OFFER ACCEPTED")
+    })}
+
+/**
+ * A function to update the decision data field of a transfer offer to "OFFER DECLINED".
+ * 
+ * @param {Event} e - Event Handling Object
+ * @param {string} deci - The decision the selling club takes regarding the offer received
+ * @param {string} from - The name of the club who sent the transfer offer
+ * @param {string} to - The player that the buying club wants to buy/sign on loan
+ */
+
+const handleDecline = async (e, deci, from, to) => {
+
+    e.preventDefault();
+    let q_decision = query(collection(db, "transferOffers"), where("decision", "==", deci));
+    let q_club = query(q_decision, where("buyingClub", "==", from));
+    let q_player = query(q_club, where("player", "==", to));
+
+    let specificOffer = await getDocs(q_player);
+
+    specificOffer.forEach(async (offer) => {
+        await updateDoc(offer.ref, "decision", "OFFER DECLINED")
+    })
+}
+
+/**
+ * A function to update the decision data field of a transfer offer to "CLUB WOULD LIKE TO NEGOTIATE THE OFFER PLEASE GET IN TOUCH"
+ * 
+ * @param {Event} e - Event Handling Object
+ * @param {string} deci - The decision the selling club takes regarding the offer received
+ * @param {string} from - The name of the club who sent the transfer offer
+ * @param {string} to - The player that the buying club wants to buy/sign on loan
+ */
+
+const handleNegotiate = async (e, deci, from, to) => {
+
+    e.preventDefault();
+    let q_decision = query(collection(db, "transferOffers"), where("decision", "==", deci));
+    let q_club = query(q_decision, where("buyingClub", "==", from));
+    let q_player = query(q_club, where("player", "==", to));
+
+    let specificOffer = await getDocs(q_player);
+
+    specificOffer.forEach(async (offer) => {
+        await updateDoc(offer.ref, "decision", "CLUB WOULD LIKE TO NEGOTIATE THE OFFER PLEASE GET IN TOUCH")
+    })
+
+}
+
 
 const ReceivedOffers_DataTable = () => {
 
@@ -68,50 +136,6 @@ const ReceivedOffers_DataTable = () => {
 
     console.log(data)
 
-    const handleAccept = async (e, deci, from, to) => {
-
-        e.preventDefault();
-        let q_decision = query(collection(db, "transferOffers"), where("decision", "==", deci));
-        let q_club = query(q_decision, where("buyingClub", "==", from));
-        let q_player = query(q_club, where("player", "==", to));
-
-        let specificOffer = await getDocs(q_player);
-
-        specificOffer.forEach(async (offer) => {
-            await updateDoc(offer.ref, "decision", "OFFER ACCEPTED")
-        })
-
-    }
-
-    const handleDecline = async (e, deci, from, to) => {
-
-        e.preventDefault();
-        let q_decision = query(collection(db, "transferOffers"), where("decision", "==", deci));
-        let q_club = query(q_decision, where("buyingClub", "==", from));
-        let q_player = query(q_club, where("player", "==", to));
-
-        let specificOffer = await getDocs(q_player);
-
-        specificOffer.forEach(async (offer) => {
-            await updateDoc(offer.ref, "decision", "OFFER DECLINED")
-        })
-    }
-
-    const handleNegotiate = async (e, deci, from, to) => {
-
-        e.preventDefault();
-        let q_decision = query(collection(db, "transferOffers"), where("decision", "==", deci));
-        let q_club = query(q_decision, where("buyingClub", "==", from));
-        let q_player = query(q_club, where("player", "==", to));
-
-        let specificOffer = await getDocs(q_player);
-
-        specificOffer.forEach(async (offer) => {
-            await updateDoc(offer.ref, "decision", "CLUB WOULD LIKE TO NEGOTIATE THE OFFER PLEASE GET IN TOUCH")
-        })
-
-    }
-
     const handleClubChange = async (e) => {
 
         e.preventDefault();
@@ -154,34 +178,34 @@ const ReceivedOffers_DataTable = () => {
     }
 
     return (
-       
+
         <div className="myTable">
-          <table>
-            <tr>
-              <th>Decision</th>
-              <th>Offer From</th>
-              <th>Transfer Type</th>
-              <th>Offer For</th>
-              <th>Fee Offered</th>
-              <th>Action</th>
-            </tr>
-            {data.map((offer, key) => {
-              return (
-                <tr key={key}>
-                  <td>{offer.decision}</td>
-                  <td>{offer.buyingClub}</td>
-                  <td>{offer.transferType}</td>
-                  <td>{offer.player}</td>
-                  <td>{offer.fee}</td>
-                  <button className="acceptOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleAccept(e, offer.decision, offer.buyingClub, offer.player)}}> Accept Offer</button>
-                  <button className="declineOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleDecline(e, offer.decision, offer.buyingClub, offer.player) }}> Decline Offer </button>
-                  <button className="negotiate" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.buyingClub, offer.player) }}> Invite to Negotiation</button>
+            <table>
+                <tr>
+                    <th>Decision</th>
+                    <th>Offer From</th>
+                    <th>Transfer Type</th>
+                    <th>Offer For</th>
+                    <th>Fee Offered</th>
+                    <th>Action</th>
                 </tr>
-              )
-            })}
-          </table>
+                {data.map((offer, key) => {
+                    return (
+                        <tr key={key}>
+                            <td>{offer.decision}</td>
+                            <td>{offer.buyingClub}</td>
+                            <td>{offer.transferType}</td>
+                            <td>{offer.player}</td>
+                            <td>{offer.fee}</td>
+                            <button className="acceptOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleAccept(e, offer.decision, offer.buyingClub, offer.player) }}> Accept Offer</button>
+                            <button className="declineOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleDecline(e, offer.decision, offer.buyingClub, offer.player) }}> Decline Offer </button>
+                            <button className="negotiate" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.buyingClub, offer.player) }}> Invite to Negotiation</button>
+                        </tr>
+                    )
+                })}
+            </table>
         </div>
-      );
+    );
 
 
 };
