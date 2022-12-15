@@ -3,6 +3,7 @@ import AuthReducer from "./AuthReducer";
 
 const INITIAL_STATE = {
   currentUser: JSON.parse(localStorage.getItem("user")) || null,
+  doc: null,
 };
 
 export const AuthContext = createContext(INITIAL_STATE);
@@ -15,7 +16,7 @@ export const AuthContextProvider = ({ children }) => {
   }, [state.currentUser]);
 
   return (
-    <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch }}>
+    <AuthContext.Provider value={{ currentUser: state.currentUser, dispatch, doc: state.doc }}>
       {children}
     </AuthContext.Provider>
   );

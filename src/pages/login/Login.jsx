@@ -24,10 +24,14 @@ const Login = () => {
         // Signed in
         const user = userCredential.user;
         dispatch({ type: "LOGIN", payload: user })
+        console.log("USER: " + JSON.stringify(user))
         //console.log("I am here1");
 
         var thisuser = getDoc(doc(db, "users", user.uid));
         var role = (String) ((await thisuser).get("role"));
+        var file = (String) ((await thisuser).get("document"));
+        dispatch({ type: "SAVE_DOCUMENT", payload: { document: file }});
+        console.log(file);
         //console.log(role +" I am here2");
         if (role == "Federation Representative") {
           navigate("/fedhome");

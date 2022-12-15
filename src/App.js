@@ -17,22 +17,11 @@ import Deadline_setting from "./pages/deadline_setting/Deadline_setting";
 import Broadcasting_rights_distribution from "./pages/broadcasting_rights_distribution/Broadcasting_rights_distribution";
 import FedHome from "./pages/fedHome/FedHome";
 import ClubHome from "./pages/clubHome/ClubHome";
+import Broadcasting from "./pages/broadcasting/Broadcasting";
 import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
-import ClubStadiumApp from "./pages/clubStadiumApp/ClubStadiumApp";
-import FedStadiumApp from "./pages/fedStadiumApp/FedStadiumApp";
-import Players from "./pages/playersinfo/Players";
-import National from "./pages/national/National";
-import Select from "./pages/national_select/Select";
-import SendTransferOffer from "./pages/sendTransferOffer/SendTransferOffer";
-import TSContractProposal from "./pages/TS_contractProposal/TS_ContractProposal";
-import SentContractProposalsNotif from "./pages/sent_ContractProposals/Sent_ContractProposals";
-import ReceivedContractProposalsNotif from "./pages/receivedContractProposal/received_ContractProposal";
-import TransferSystem from "./pages/transfersystem/TransferSystem";
-import GalatasarayPlayers from "./pages/gsplayers/GSPlayers";
-import FenerbahcePlayers from "./pages/fbplayers/FBPlayers";
-import SentOffersNotif from "./pages/sentoffersNoti/SentOffers_noti";
-import ReceivedOffersNotif from "./pages/receivedoffersNoti/receivedoffers_Noti";
+import DownloadC from "./pages/download_c/Download_c";
+import Download_d from "./pages/download_d/Download_d";
 
 function App() {
 
@@ -56,29 +45,20 @@ function App() {
             <Route path="notifications" element={<Notifications/>}/>
             <Route path="clubtoplayercom" element={<ClubToPlayerCom/>} />
             <Route path="addplayers" element={<AddPlayers/>} />
+            <Route path="broadcasting" element={<Broadcasting/>} />
             <Route path="newproposal" element={<NewProposal/>} />
             <Route path="playertoclub" element={<PlayerToClub/>} />
             <Route path="Renewing" element={<Renewing/>} />
             <Route path="RequestLeaving" element={<RequestLeaving/>} />
+            <Route path="download_c" element={<DownloadC />} />
             <Route path="sendreq" element={<SendReq/>} />
+            <Route path="download_d" element={<Download_d/>} />
             <Route path="notifications" element={<RequireAuth><Notifications/></RequireAuth>}/>
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
             <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
             <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
-            <Route path="sendoffer" element={<SendTransferOffer/>} />
-            <Route path="contractproposal" element={<TSContractProposal/>} />
-            <Route path="sentcontractproposals" element={<SentContractProposalsNotif/>} />
-            <Route path="receivedcontractproposals" element={<ReceivedContractProposalsNotif/>} />
-            <Route path="transfersystem" element={<TransferSystem/>} />
-            <Route path="galatasarayplayers" element={<GalatasarayPlayers/>} />
-            <Route path="fenerbahceplayers" element={<FenerbahcePlayers/>} />
-            <Route path="sentoffersnotifications" element={<SentOffersNotif/>} />
-            <Route path="receivedoffersnotifications" element={<ReceivedOffersNotif/>} />
-            <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} />
-            <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
-            {/* <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} /> */}
-            <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
             <Route path="users">
+
               <Route
                 index
                 element={
@@ -89,9 +69,6 @@ function App() {
               />
             </Route>
             <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
-            <Route path="stadiumclub" element={<RequireAuth> <ClubStadiumApp /> </RequireAuth>} />
-            <Route path="stadiumfed" element={<RequireAuth><FedStadiumApp /></RequireAuth>} />
-
           </Route>
         </Routes>
       </BrowserRouter>
