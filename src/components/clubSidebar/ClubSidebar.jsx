@@ -73,6 +73,13 @@ const ClubSidebar = () => {
               <StoreIcon className="icon" />
               <span>Stadium Reservation</span>
             </li>
+          <Link to="/transfersystem" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Transfer System</span>
+            </li>
+          </Link>
+          
           </Link>
           <Link to={"/players/" + club} style={{ textDecoration: "none" }}>
             <li>

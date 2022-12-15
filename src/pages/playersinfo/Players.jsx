@@ -15,6 +15,9 @@ const Players = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                /**
+                 * Obtain the players list for the club that is logged in.
+                 */
                 const fetchData = async () => {
                     let list = []
                     try {

@@ -29,6 +29,10 @@ const National = () => {
         fetchData()
     }, []);
 
+    /**
+     * Navigates user to the selected club.
+     * @param {json} param 
+     */
     const navigateTo = (param) => {
         console.log(param.name)
         navigate("/national/" + param.name)

@@ -20,6 +20,15 @@ There is a component folder which has multiple components that were used in the 
 
 There is a pages folder which has all the pages in the website
 
+## Deployment
+In order to deploy the application using surge run these commands:
+```
+npm run build
+cd build/
+cp index.html 200.html
+surge
+```
+after the surge command make an account and choose the link you want to deploy the app to. the link should end with `.surge.sh`.
 ## Additional info
 In the project directory, you can run:
 ### `npm start`
@@ -76,10 +85,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/m
 ### Advanced Configuration
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
 ### `npm run build` fails to minify
 

@@ -1,4 +1,4 @@
-import "./sidebar.scss";
+import "./TSSidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -14,10 +14,10 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 
 
-const PlayerSidebar = () => {
+const TSSidebar = () => {
   
   return (
-    <div className="sidebar">
+    <div className="TSsidebar">
       <div className="top">
         
           <span className="logo">F.F.P</span>
@@ -27,33 +27,24 @@ const PlayerSidebar = () => {
       <div className="center">
         <ul>
           <p className="title">SERVICES</p>
-          <Link to="/playerhome" style={{ textDecoration: "none" }}>
+          <Link to="/sentoffersnotifications" style={{ textDecoration: "none" }}>
           <li>
             <DashboardIcon className="icon" />
-            <span>Home</span>
+            <span>Sent Offers</span>
           </li>
-          </Link>
-          <Link to="/playerhome" style={{ textDecoration: "none" }}>
+          </Link>  
+          <Link to="/receivedoffersnotifications" style={{ textDecoration: "none" }}>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Received Offers</span>
+          </li>
+          </Link>  
+          <Link to="/sentcontractproposals" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>National Team Callup</span>
+              <span>Contract Proposals Sent</span>
             </li>
           </Link>
-          <Link to="/playertoclub" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>View Club Contract Renewal</span>
-            </li>
-          </Link>
-          <Link to="/receivedcontractproposals" style={{ textDecoration: "none" }}>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Transfer System</span>
-          </li>
-          </Link>
-          
-          
-          
         </ul>
       </div>
       
@@ -61,4 +52,4 @@ const PlayerSidebar = () => {
   );
 };
 
-export default PlayerSidebar;
+export default TSSidebar;
