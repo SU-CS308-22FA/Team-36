@@ -17,6 +17,9 @@ const Select = () => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 setAdmin(user);
+                /**
+                 * Get the players for the club that has been selected using the param in the url.
+                 */
                 const fetchData = async () => {
                     let list = []
                     try {
@@ -38,6 +41,10 @@ const Select = () => {
         });
     }, []);
 
+    /**
+     * Select player to add to national team. It sends a notification to the player.
+     * @param {json} player 
+     */
     const handleSelect = async (player) => {
         console.log()
         try {
