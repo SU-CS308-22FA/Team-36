@@ -43,3 +43,54 @@ export const PlayersColumns = [
     width: 200
   },
 ];
+
+export const Clubs = [
+  {
+    field: "name",
+    headerName: "Club",
+    width: 230,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 230,
+  },
+]
+
+export const PlayerDetails = [
+  {
+    field: "Age",
+    headerName: "Age",
+    width: 230,
+  },
+  {
+    field: "agency",
+    headerName: "Agency",
+    width: 230,
+  },
+  {
+    field: "contactAgency",
+    headerName: "Contact Agency",
+    width: 230,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 230,
+  },
+  {
+    field: "name",
+    headerName: "Name",
+    width: 230,
+  },
+  {
+    field: "nationality",
+    headerName: "Country",
+    width: 230,
+  },
+  {
+    field: "position",
+    headerName: "Position",
+    width: 230,
+  }
+]

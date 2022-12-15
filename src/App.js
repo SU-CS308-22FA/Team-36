@@ -21,6 +21,9 @@ import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
 import ClubStadiumApp from "./pages/clubStadiumApp/ClubStadiumApp";
 import FedStadiumApp from "./pages/fedStadiumApp/FedStadiumApp";
+import Players from "./pages/playersinfo/Players";
+import National from "./pages/national/National";
+import Select from "./pages/national_select/Select";
 import SendTransferOffer from "./pages/sendTransferOffer/SendTransferOffer";
 import TSContractProposal from "./pages/TS_contractProposal/TS_ContractProposal";
 import SentContractProposalsNotif from "./pages/sent_ContractProposals/Sent_ContractProposals";
@@ -71,8 +74,11 @@ function App() {
             <Route path="fenerbahceplayers" element={<FenerbahcePlayers/>} />
             <Route path="sentoffersnotifications" element={<SentOffersNotif/>} />
             <Route path="receivedoffersnotifications" element={<ReceivedOffersNotif/>} />
+            <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} />
+            <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
+            {/* <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} /> */}
+            <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
             <Route path="users">
-
               <Route
                 index
                 element={
