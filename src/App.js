@@ -19,6 +19,8 @@ import FedHome from "./pages/fedHome/FedHome";
 import ClubHome from "./pages/clubHome/ClubHome";
 import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
+import Club_req from "./pages/club_req/club_req";
+import FedNotifications from "./pages/fedNotifications/fedNotifications";
 
 function App() {
 
@@ -51,6 +53,8 @@ function App() {
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
             <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
             <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
+            <Route path="club_req" element={<Club_req/>} />
+            <Route path="fedNotifications" element={<RequireAuth><FedNotifications/></RequireAuth>}/>
             <Route path="users">
 
               <Route

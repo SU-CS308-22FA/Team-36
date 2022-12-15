@@ -33,6 +33,12 @@ const PlayerSidebar = () => {
             <span>Home</span>
           </li>
           </Link>
+          <Link to="/notifications" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Alerts and Notifications</span>
+            </li>
+          </Link>
           <Link to="/playerhome" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
