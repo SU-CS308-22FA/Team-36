@@ -21,6 +21,9 @@ import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
 import ClubStadiumApp from "./pages/clubStadiumApp/ClubStadiumApp";
 import FedStadiumApp from "./pages/fedStadiumApp/FedStadiumApp";
+import Players from "./pages/playersinfo/Players";
+import National from "./pages/national/National";
+import Select from "./pages/national_select/Select";
 
 function App() {
 
@@ -53,8 +56,11 @@ function App() {
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
             <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
             <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
+            <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} />
+            <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
+            {/* <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} /> */}
+            <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
             <Route path="users">
-
               <Route
                 index
                 element={

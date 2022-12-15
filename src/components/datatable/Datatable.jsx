@@ -61,7 +61,6 @@ const Datatable = () => {
         columns={userColumns}
         pageSize={9}
         rowsPerPageOptions={[9]}
-        checkboxSelection
       />
     </div>
   );
