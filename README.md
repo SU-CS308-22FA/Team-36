@@ -1,11 +1,27 @@
-# Getting Started with Create React App
+# Federation Financial Portal
+## Website To the project
+[Click here](https://cs308-team-36.surge.sh/)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
+Our Project is an idea on how a football federation could organize, manage, and run its tasks in a centralized way.
 
-## Available Scripts
+## User Documentation
+There is no need to download or install anything, going to the website will show the project.
+### How to report a bug
+You can email any of the project managers with your bug report.
+### known bugs
+There are currently no known bugs brought to our attention
 
+## Developer Documentation
+All code is in this repository, data is stored using firebase.
+
+### Folder Structure
+There is a component folder which has multiple components that were used in the website
+
+There is a pages folder which has all the pages in the website
+
+## Additional info
 In the project directory, you can run:
-
 ### `npm start`
 
 Runs the app in the development mode.\
