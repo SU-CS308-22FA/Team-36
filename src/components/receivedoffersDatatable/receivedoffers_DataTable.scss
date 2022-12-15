@@ -1,0 +1,89 @@
+.myTable {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button {
+    display: flex;
+    flex-direction: row;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .acceptOffer {
+    color: green;
+    background-color: white;
+    border-color: green;
+    border-radius: 8px;
+  }
+
+  .acceptOffer:hover{
+    transform:scale(1.1);
+  }
+
+  .acceptOffer:disabled{
+    color: lightgray;
+    border-color: lightgray;
+    transform: none;
+    cursor: default;
+  }
+
+  .declineOffer {
+    color: red;
+    background-color: white;
+    border-color: red;
+    border-radius: 8px;
+  }
+
+  .declineOffer:hover{
+    transform:scale(1.1);
+  }
+
+  .declineOffer:disabled{
+    color: lightgray;
+    border-color: lightgray;
+    transform: none;
+    cursor: default;
+  }
+
+  .negotiate {
+    color: blue;
+    background-color: white;
+    border-color: blue;
+    border-radius: 8px;
+  }
+
+  .negotiate:hover{
+    transform:scale(1.1);
+  }
+
+  .negotiate:disabled{
+    color: lightgray;
+    border-color: lightgray;
+    transform: none;
+    cursor: default;
+  }
+
+
+  table {
+    border: 2px solid red;
+    width: 800px;
+    height: 200px;
+    
+  }
+    
+  th {
+    border-bottom: 1px solid black;
+    gap: 0px;
+  }
+    
+  td {
+    text-align: center;
+    border-bottom: 1px solid black;
+  }
+}
+  
+
+

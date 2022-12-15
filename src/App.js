@@ -21,6 +21,15 @@ import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
 import ClubStadiumApp from "./pages/clubStadiumApp/ClubStadiumApp";
 import FedStadiumApp from "./pages/fedStadiumApp/FedStadiumApp";
+import SendTransferOffer from "./pages/sendTransferOffer/SendTransferOffer";
+import TSContractProposal from "./pages/TS_contractProposal/TS_ContractProposal";
+import SentContractProposalsNotif from "./pages/sent_ContractProposals/Sent_ContractProposals";
+import ReceivedContractProposalsNotif from "./pages/receivedContractProposal/received_ContractProposal";
+import TransferSystem from "./pages/transfersystem/TransferSystem";
+import GalatasarayPlayers from "./pages/gsplayers/GSPlayers";
+import FenerbahcePlayers from "./pages/fbplayers/FBPlayers";
+import SentOffersNotif from "./pages/sentoffersNoti/SentOffers_noti";
+import ReceivedOffersNotif from "./pages/receivedoffersNoti/receivedoffers_Noti";
 
 function App() {
 
@@ -53,6 +62,15 @@ function App() {
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />
             <Route path="clubhome" element={<RequireAuth><ClubHome /></RequireAuth>} />
             <Route path="playerhome" element={<RequireAuth><PlayerHome /></RequireAuth>} />
+            <Route path="sendoffer" element={<SendTransferOffer/>} />
+            <Route path="contractproposal" element={<TSContractProposal/>} />
+            <Route path="sentcontractproposals" element={<SentContractProposalsNotif/>} />
+            <Route path="receivedcontractproposals" element={<ReceivedContractProposalsNotif/>} />
+            <Route path="transfersystem" element={<TransferSystem/>} />
+            <Route path="galatasarayplayers" element={<GalatasarayPlayers/>} />
+            <Route path="fenerbahceplayers" element={<FenerbahcePlayers/>} />
+            <Route path="sentoffersnotifications" element={<SentOffersNotif/>} />
+            <Route path="receivedoffersnotifications" element={<ReceivedOffersNotif/>} />
             <Route path="users">
 
               <Route

@@ -1,4 +1,4 @@
-import "./sidebar.scss";
+import "./TSSidebar.scss";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -14,10 +14,10 @@ import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined
 import { Link } from "react-router-dom";
 
 
-const ClubSidebar = () => {
+const TSSidebar = () => {
   
   return (
-    <div className="sidebar">
+    <div className="TSsidebar">
       <div className="top">
         
           <span className="logo">F.F.P</span>
@@ -27,45 +27,24 @@ const ClubSidebar = () => {
       <div className="center">
         <ul>
           <p className="title">SERVICES</p>
-          <Link to="/clubhome" style={{ textDecoration: "none" }}>
+          <Link to="/sentoffersnotifications" style={{ textDecoration: "none" }}>
           <li>
             <DashboardIcon className="icon" />
-            <span>Home</span>
+            <span>Sent Offers</span>
           </li>
-          </Link>
-          <Link to="/notifications" style={{ textDecoration: "none" }}>
+          </Link>  
+          <Link to="/receivedoffersnotifications" style={{ textDecoration: "none" }}>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Received Offers</span>
+          </li>
+          </Link>  
+          <Link to="/sentcontractproposals" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
-              <span>Alerts and Notifications</span>
+              <span>Contract Proposals Sent</span>
             </li>
           </Link>
-          <Link to="/upload_c" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>Document Upload</span>
-            </li>
-          </Link>
-          <Link to="/clubtoplayercom" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>Send Player Contract Renewal</span>
-            </li>
-          </Link>
-          <Link to="/stadiumclub" style={{ textDecoration: "none" }}>
-            <li>
-              <StoreIcon className="icon" />
-              <span>Stadium Reservation</span>
-            </li>
-          <Link to="/transfersystem" style={{ textDecoration: "none" }}>
-            <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Transfer System</span>
-            </li>
-          </Link>
-          
-          </Link>
-          
-          
         </ul>
       </div>
       
@@ -73,4 +52,4 @@ const ClubSidebar = () => {
   );
 };
 
-export default ClubSidebar;
+export default TSSidebar;
