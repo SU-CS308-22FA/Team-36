@@ -51,6 +51,12 @@ const PlayerSidebar = () => {
               <span>View Club Contract Renewal</span>
             </li>
           </Link>
+          <Link to="/receivedcontractproposals" style={{ textDecoration: "none" }}>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Transfer System</span>
+          </li>
+          </Link>
           
           
           

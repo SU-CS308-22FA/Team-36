@@ -12,10 +12,27 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
+import { Accessibility, Public } from "@mui/icons-material";
+import { useState, useEffect } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth, db } from "../../firebase";
+import { doc, getDoc } from "firebase/firestore";
 
 
 const ClubSidebar = () => {
-  
+  const [club, setClub] = useState();
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      const fetchData = async () => {
+        const docRef = doc(db, "users", user.uid)
+        const docSnap = await getDoc(docRef);
+        setClub(docSnap.data().name)
+     }
+     fetchData()
+    })
+  }, [])
+
   return (
     <div className="sidebar">
       <div className="top">
@@ -51,6 +68,17 @@ const ClubSidebar = () => {
               <span>Send Player Contract Renewal</span>
             </li>
           </Link>
+          <Link to="/stadiumclub" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Stadium Reservation</span>
+            </li>
+          <Link to="/transfersystem" style={{ textDecoration: "none" }}>
+            <li>
+              <PersonOutlineIcon className="icon" />
+              <span>Transfer System</span>
+            </li>
+          </Link>
           <Link to="/club_req" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
@@ -58,8 +86,13 @@ const ClubSidebar = () => {
             </li>
           </Link>
           
-          
-          
+          </Link>
+          <Link to={"/players/" + club} style={{ textDecoration: "none" }}>
+            <li>
+              <Accessibility className="icon" />
+              <span>Players</span>
+            </li>
+          </Link>
         </ul>
       </div>
       

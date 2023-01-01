@@ -12,6 +12,7 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
+import { Public } from "@mui/icons-material";
 
 
 const FedSidebar = () => {
@@ -69,8 +70,18 @@ const FedSidebar = () => {
               <span>Clubs' Documents</span>
             </li>
           </Link>
-          
-          
+          <Link to="/stadiumfed" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Stadium Reservations View</span>
+            </li>
+          </Link>
+          <Link to="/national" style={{ textDecoration: "none" }}>
+            <li>
+              <Public className="icon" />
+              <span>National</span>
+            </li>
+          </Link>
         </ul>
       </div>
       
