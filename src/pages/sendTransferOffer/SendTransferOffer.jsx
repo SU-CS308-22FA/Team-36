@@ -70,6 +70,7 @@ const SendTransferOffer = () => {
   const [sclub, setSClub] = useState('');
   const [type, setType] = useState('');
   const[decision, setDecision] = useState("AWAITING DECISION");
+  const [approval, setApproval] = useState("AWAITING APPROVAL");
 
 
   const handleBClub = (e) => {
@@ -100,7 +101,8 @@ const SendTransferOffer = () => {
       "player": player,
       "sellingClub": sclub,
       "transferType": type,
-      "decision": decision
+      "decision": decision,
+      "fedApproval": approval
     });
     alert('A transfer offer of "' + fee + '" was sent to :"' + sclub +
       '" from :"' + bclub + '" for the "' + type + '" of: "' + player);

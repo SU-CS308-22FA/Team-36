@@ -6,6 +6,8 @@ import { collection, getDocs, onSnapshot, query, where, doc, getDoc, updateDoc }
 import { db, auth } from "../../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import * as React from 'react';
+import "rc-tooltip/assets/bootstrap.css";
+import Tooltip from "rc-tooltip";
 
 /**
  * A function to update the decision data field of a transfer offer to "OFFER ACCEPTED".
@@ -177,37 +179,49 @@ const ReceivedOffers_DataTable = () => {
         })
     }
 
+    //const handleDisabledMessage = async (e) => {}
+
     return (
 
+        <>
+
+        <h2 className="disabledMessage">ALL ACTION BUTTONS WILL BE DISABLED UNTIL FEDERATRION APPROVES BIDS</h2>
+    
         <div className="myTable">
             <table>
                 <tr>
                     <th>Decision</th>
+                    <th>Federation Approval</th>
                     <th>Offer From</th>
                     <th>Transfer Type</th>
                     <th>Offer For</th>
                     <th>Fee Offered</th>
                     <th>Action</th>
+    
                 </tr>
                 {data.map((offer, key) => {
                     return (
                         <tr key={key}>
                             <td>{offer.decision}</td>
+                            <td>{offer.fedApproval}</td>
                             <td>{offer.buyingClub}</td>
                             <td>{offer.transferType}</td>
                             <td>{offer.player}</td>
                             <td>{offer.fee}</td>
-                            <button className="acceptOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleAccept(e, offer.decision, offer.buyingClub, offer.player) }}> Accept Offer</button>
-                            <button className="declineOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleDecline(e, offer.decision, offer.buyingClub, offer.player) }}> Decline Offer </button>
-                            <button className="negotiate" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.buyingClub, offer.player) }}> Invite to Negotiation</button>
+                           
+
+                            <button className="acceptOffer" disabled={offer.fedApproval != "BID APPROVED"} onClick={(e) => { handleAccept(e, offer.decision, offer.buyingClub, offer.player) }}> Accept Offer</button>
+                            <button className="declineOffer" disabled={offer.fedApproval != "BID APPROVED"} onClick={(e) => { handleDecline(e, offer.decision, offer.buyingClub, offer.player) }}> Decline Offer </button>
+                            <button className="negotiate" disabled={offer.fedApproval != "BID APPROVED"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.buyingClub, offer.player) }}> Invite to Negotiation</button>
+
                         </tr>
                     )
                 })}
             </table>
         </div>
+
+        </>
     );
-
-
 };
 
 export default ReceivedOffers_DataTable;

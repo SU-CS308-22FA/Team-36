@@ -93,6 +93,12 @@ const ClubSidebar = () => {
               <span>Players</span>
             </li>
           </Link>
+          <Link to="/clubfinancepage" style={{textDecoration: "none"}}>
+            <li>
+              <CreditCardIcon className="icon"/>
+              <span>Manage Finances</span>
+            </li>
+          </Link>
         </ul>
       </div>
       

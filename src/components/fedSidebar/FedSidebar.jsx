@@ -82,6 +82,12 @@ const FedSidebar = () => {
               <span>National</span>
             </li>
           </Link>
+          <Link to="/fedtransfersystem" style={{textDecoration: "none"}}>
+            <li>
+              <PersonOutlineIcon className="icon"/>
+              <span>Transfer System</span>
+            </li>
+          </Link>
         </ul>
       </div>
       
