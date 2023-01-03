@@ -13,17 +13,23 @@ const ClubFinancesPage = () => {
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
-          <Widget type="user" />
-          <Widget type="product" />
-          <Widget type="order" />
-          <Widget type="earning" />
+          <Widget type="FFP" />
+          <Widget type="transfers" />
+          <Widget type="stadiumFaci" />
+          <Widget type="finesTaxes" />
+        </div>
+        <div className="widgetsRevenue">
+            <Widget type="transferProfit" />
+            <Widget type="ticketSales" />
+            <Widget type="shirtSales" />
+            <Widget type="prizes" />
         </div>
         <div className="charts">
           <Featured />
-          <Chart title="Last 6 Months (Revenue)" aspect={2 / 1} />
+          <Chart title="NET Profit Over Last 5 Years" aspect={2 / 1} />
         </div>
         <div className="listContainer">
-          <div className="listTitle">Latest Transactions</div>
+          <div className="listTitle">Latest Transfers</div>
           <Table />
         </div>
       </div>

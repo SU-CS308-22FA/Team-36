@@ -19,6 +19,12 @@ const Widget = ({ type }) => {
   const [transferData, setTData] = useState([]);
 
   let Tsum = 0;
+  let finesTaxes = 0;
+  let stadiumFaci = 0;
+  let Tprofit = 0;
+  let tickets = 0;
+  let shirts = 0;
+  let prize = 0;
 
   useEffect(() => {
 
@@ -31,7 +37,7 @@ const Widget = ({ type }) => {
            
           if (docSnap.exists()) {
 
-            const q = query(collection(db, "transferOffers"), where("buyingClub", "==", docSnap.data().name));
+            const q = query(collection(db, "clubFinances"), where("name", "==", docSnap.data().name));
 
             let list = []
             try {
@@ -75,14 +81,22 @@ const Widget = ({ type }) => {
   }, []);
 
     transferData.map(async (offer) => {
-        Tsum += offer.fee;
+        Tsum = offer.transfers;
+        finesTaxes = offer.finesAndTaxes;
+        stadiumFaci = offer.stadiumAndFacilities;
+        Tprofit = offer.transferProfit;
+        shirts = offer.shirtSales;
+        tickets = offer.ticketSales;
+        prize = offer.prizes;
     })
 
     console.log(Tsum);
+    console.log(finesTaxes);
+    console.log(stadiumFaci);
 
 
     switch (type) {
-        case "user":
+        case "FFP":
           data = {
             title: "FFP STATUS",
             isMoney: false,
@@ -98,10 +112,11 @@ const Widget = ({ type }) => {
             ),
           };
           break;
-        case "order":
+        case "stadiumFaci":
           data = {
             title: "STADIUM AND FACILITIES SPENDING",
             isMoney: true,
+            dataAssociated: stadiumFaci*1000000,
             icon: (
               <ShoppingCartOutlinedIcon
                 className="icon"
@@ -113,10 +128,11 @@ const Widget = ({ type }) => {
             ),
           };
           break;
-        case "earning":
+        case "finesTaxes":
           data = {
             title: "FINES AND TAXES",
             isMoney: true,
+            dataAssociated: finesTaxes*1000000,
             icon: (
               <MonetizationOnOutlinedIcon
                 className="icon"
@@ -125,14 +141,79 @@ const Widget = ({ type }) => {
             ),
           };
           break;
-        case "product":
+        case "transfers":
           data = {
-            title: "TRANSFER SPENDINGS (M)",
+            title: "TRANSFER SPENDINGS",
             query:"transferOffers",
             isMoney: true,
-            dataAssociated: Tsum,
+            dataAssociated: Tsum*1000000,
             icon: (
               <AccountBalanceWalletOutlinedIcon
+                className="icon"
+                style={{
+                  backgroundColor: "rgba(128, 0, 128, 0.2)",
+                  color: "purple",
+                }}
+              />
+            ),
+          };
+          break;
+          case "transferProfit":
+          data = {
+            title: "TRANSFERS EARNINGS",
+            query:"transferOffers",
+            isMoney: true,
+            dataAssociated: Tprofit*1000000,
+            icon: (
+              <AccountBalanceWalletOutlinedIcon
+                className="icon"
+                style={{
+                  backgroundColor: "rgba(128, 0, 128, 0.2)",
+                  color: "yellow",
+                }}
+              />
+            ),
+          };
+          break;
+          case "ticketSales":
+          data = {
+            title: "TICKET SALES",
+            isMoney: true,
+            dataAssociated: tickets*1000000,
+            icon: (
+              <MonetizationOnOutlinedIcon
+                className="icon"
+                style={{
+                  backgroundColor: "rgba(128, 0, 128, 0.2)",
+                  color: "purple",
+                }}
+              />
+            ),
+          };
+          break;
+          case "shirtSales":
+          data = {
+            title: "MERCHANDISE SALES",
+            isMoney: true,
+            dataAssociated: shirts*1000000,
+            icon: (
+              <MonetizationOnOutlinedIcon
+                className="icon"
+                style={{
+                  backgroundColor: "rgba(128, 0, 128, 0.2)",
+                  color: "purple",
+                }}
+              />
+            ),
+          };
+          break;
+          case "prizes":
+          data = {
+            title: "PRIZES",
+            isMoney: true,
+            dataAssociated: prize*1000000,
+            icon: (
+              <MonetizationOnOutlinedIcon
                 className="icon"
                 style={{
                   backgroundColor: "rgba(128, 0, 128, 0.2)",
@@ -154,7 +235,7 @@ const Widget = ({ type }) => {
       <div className="left">
         <span className="title">{data.title}</span>
         <span className="counter">
-          {data.isMoney && "$"} {data.dataAssociated}
+          {data.isMoney && "₺"} {data.dataAssociated}
         </span>
         <span className="link">{data.link}</span>
       </div>

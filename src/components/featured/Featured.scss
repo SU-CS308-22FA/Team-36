@@ -24,7 +24,8 @@
       justify-content: center;
       gap: 15px;
   
-      .featuredChart {
+      .featuredChart,
+      .revFeaturedChart {
         width: 100px;
         height: 100px;
       }
@@ -34,7 +35,8 @@
         color: gray;
       }
   
-      .amount {
+      .amount,
+      .revAmount {
         font-size: 30px;
       }
   
