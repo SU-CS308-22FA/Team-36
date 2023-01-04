@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, onSnapshot, query, where, doc, getDoc, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Link } from "react-router-dom";
+
 
 const Featured = () => {
   const [transferData, setTData] = useState([]);
@@ -73,15 +75,17 @@ const Featured = () => {
 
     transferData.map(async (offer) => {
         Tsum = offer.transfers;
-        spending += offer.transfers;
-        spending += offer.stadiumAndFacilities;
-        spending += offer.finesAndTaxes;
+        spending = offer.totalSpend;
+        // spending += offer.transfers;
+        // spending += offer.stadiumAndFacilities;
+        // spending += offer.finesAndTaxes;
 
         Tprofit = offer.transferProfit;
-        revenue += offer.transferProfit;
-        revenue += offer.shirtSales;
-        revenue += offer.ticketSales;
-        revenue += offer.prizes
+        revenue = offer.totalRevenue;
+        // revenue += offer.transferProfit;
+        // revenue += offer.shirtSales;
+        // revenue += offer.ticketSales;
+        // revenue += offer.prizes
     })
 
     let percentage = (Tsum/spending)*100;
@@ -112,7 +116,14 @@ const Featured = () => {
         <p className="desc">
            The number above represents NET profit.
         </p>
+        <Link to="/financedataupload" style={{textDecoration: "none"}}>
+        <button className="goUploadFinance">Upload Finance Data</button>
+      </Link>
+      <p className="desc">
+           If you see no data in the widgets up or in this area then please click on the button above to upload financial data.
+        </p>
       </div>
+      
     </div>
   );
 };
