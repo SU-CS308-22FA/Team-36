@@ -1,10 +1,14 @@
-.disabledMessage {
-    align-items: center;
-  }
+.desc {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
   .myTable {
     width: 100%;
     height: 50vh;
-    display: flex;
     justify-content: center;
     align-items: center;
   
@@ -15,60 +19,41 @@
       cursor: pointer;
     }
   
-    .acceptOffer {
+    .checkStatus {
       color: green;
       background-color: white;
       border-color: green;
       border-radius: 8px;
     }
   
-    .acceptOffer:hover{
+    .checkStatus:hover{
       transform:scale(1.1);
     }
   
-    .acceptOffer:disabled{
+    .checkStatus:disabled{
       color: lightgray;
       border-color: lightgray;
       transform: none;
       cursor: default;
     }
   
-    .declineOffer {
+    .sendWarning {
       color: red;
       background-color: white;
       border-color: red;
       border-radius: 8px;
     }
   
-    .declineOffer:hover{
+    .sendWarning:hover{
       transform:scale(1.1);
     }
   
-    .declineOffer:disabled{
+    .sendWarning:disabled{
       color: lightgray;
       border-color: lightgray;
       transform: none;
       cursor: default;
-    }
-  
-    .negotiate {
-      color: blue;
-      background-color: white;
-      border-color: blue;
-      border-radius: 8px;
-    }
-  
-    .negotiate:hover{
-      transform:scale(1.1);
-    }
-  
-    .negotiate:disabled{
-      color: lightgray;
-      border-color: lightgray;
-      transform: none;
-      cursor: default;
-    }
-  
+    }  
   
     table {
       border: 2px solid red;
@@ -87,6 +72,7 @@
       border-bottom: 1px solid black;
     }
   }
+
     
   
   

@@ -1,4 +1,4 @@
-import "./receivedoffers_DataTable.scss";
+import "./FFPTable.scss";
 import { DataGrid } from "@mui/x-data-grid";
 import { offers_usercolumns, receivedOffers_usercolumns } from "../../offersDataTable";
 import { useEffect, useState } from "react";
@@ -8,133 +8,115 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import * as React from 'react';
 import "rc-tooltip/assets/bootstrap.css";
 import Tooltip from "rc-tooltip";
+import { Link } from "react-router-dom";
 
 const FFPTable = () => {
 
     const [data, setData] = useState([]);
-    const q = query(collection(db, "users"), where("role", "==", "Club"));
     
     useEffect(() => {
-        const fetchData = async () => {
-           
+      const fetchData = async () => {
+        let list = [];
+        try {
+          const querySnapshot = await getDocs(collection(db, "clubFinances"));
+          querySnapshot.forEach((doc) => {
+            list.push({ id: doc.id, ...doc.data() });
+          });
+          setData(list);
+          console.log(list);
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      fetchData();
+  
+      // LISTEN (REALTIME)
+      const unsub = onSnapshot(
+        collection(db, "clubFinances"),
+        (snapShot) => {
           let list = [];
-          try {
-            const querySnapshot = await getDocs(q);
-            querySnapshot.forEach((doc) => {
-              list.push({ id: doc.id, ...doc.data() });
-            });
-            setData(list);
-            console.log(list);
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        fetchData();
+          snapShot.docs.forEach((doc) => {
+            list.push({ id: doc.id, ...doc.data() });
+          });
+          setData(list);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  
+      return () => {
+        unsub();
+      };
+    }, []);
 
-        const unsub = onSnapshot(
-         q,
-          (snapShot) => {
-            let list = [];
-            snapShot.docs.forEach((doc) => {
-              list.push({ id: doc.id, ...doc.data() });
-            });
-            setData(list);
-          },
-          (error) => {
-            console.log(error);
-          }
-        );
-    
-        return () => {
-          unsub();
-        };
-      }, []);
-   
-    console.log(data)
+      console.log(data)
 
-    const handleClubChange = async (e) => {
+    const handleCheck = async (e, club, spend, revenue) => {
 
-        e.preventDefault();
+      e.preventDefault();
 
-        data.map(async (offer) => {
-
-            let q_decision = query(collection(db, "transferOffers"), where("decision", "==", offer.decision));
-            let q_club = query(q_decision, where("buyingClub", "==", offer.buyingClub));
-            let q_player = query(q_club, where("player", "==", offer.player));
-
-            let specificOffer = await getDocs(q_player);
-            console.log(offer.player);
-
-            data.map(async (playeroffer) => {
-                //let q_playerdecision = query(collection(db, "TSContractProposals"), where("decision", "==", playeroffer.decision));
-                let q_playerclub = query(collection(db, "TSContractProposals"), where("offerFrom", "==", offer.buyingClub));
-                let q_playername = query(q_playerclub, where("player", "==", offer.player));
-
-                let CspecificOffer = await getDocs(q_playername);
-
-                if (specificOffer.decision == "OFFER ACCEPTED") {
-                    if (CspecificOffer.decision == "OFFER ACCEPTED") {
-
-                        data.map(async (user) => {
-                            let q_playerFind = query(collection(db, "users"), where("name", "==", offer.player));
-                            let q_clubFind = query(q_playerFind, where("currentClub", "==", playeroffer.buyingClub));
-
-                            let theplayer = await getDocs(q_clubFind);
-
-                            theplayer.forEach(async (doc) => {
-                                await updateDoc(doc.ref, "currentClub", offer.buyingClub)
-                            })
-                        })
-                    }
-                }
-
-            })
-
+      let q_club = query(collection(db, "clubFinances"), where("name", "==", club));
+      
+      if (spend < ((revenue * 0.6)-20)) {
+        let thisClub = await getDocs(q_club);
+        thisClub.forEach(async (nady) => {
+          await updateDoc(nady.ref, "ffpStatus", "SAFE")
         })
-    }
+      } 
+      else if (spend <= (revenue * 0.6) && spend >= ((revenue * 0.6) - 20)){
+        let thisClub = await getDocs(q_club);
+        thisClub.forEach(async (nady) => {
+          await updateDoc(nady.ref, "ffpStatus", "IN DANGER")
+        })
+      }
 
-    //const handleDisabledMessage = async (e) => {}
+      else {
+        let thisClub = await getDocs(q_club);
+        thisClub.forEach(async (nady) => {
+          await updateDoc(nady.ref, "ffpStatus", "BROKEN")
+        })
+      }
 
-    return (
+  }
 
-        <>
-
-        <h2 className="disabledMessage">ALL ACTION BUTTONS WILL BE DISABLED UNTIL FEDERATRION APPROVES BIDS</h2>
-    
+    return (  
+      <div className="everything">
+        <p className="desc">
+            The following is an explanation of what each FFP Status means:
+            <p className="safe">SAFE: This means that the club has spent far less than 60% of their revenues and is safe from breaking FFP rules.</p>
+            <p className="danger">IN DANGER: This means that the club has almost spent 60% of its revenues or has spent 60% of its revenues and is almost breaking FFP rules.</p>
+            <p className="broken">BROKEN: The club has spent more than 60% of its revenues and has broken FFP rules. </p>
+          </p>
         <div className="myTable">
             <table>
                 <tr>
-                    <th>Decision</th>
-                    <th>Federation Approval</th>
-                    <th>Offer From</th>
-                    <th>Transfer Type</th>
-                    <th>Offer For</th>
-                    <th>Fee Offered</th>
+                    <th>Club Name</th>
+                    <th>Total Spend</th>
+                    <th>Total Revenue</th>
+                    <th>NET Profit</th>
+                    <th>Status</th>
                     <th>Action</th>
     
                 </tr>
                 {data.map((offer, key) => {
                     return (
                         <tr key={key}>
-                            <td>{offer.decision}</td>
-                            <td>{offer.fedApproval}</td>
-                            <td>{offer.buyingClub}</td>
-                            <td>{offer.transferType}</td>
-                            <td>{offer.player}</td>
-                            <td>{offer.fee}</td>
-                           
-
-                            <button className="acceptOffer" disabled={offer.fedApproval != "BID APPROVED"} onClick={(e) => { handleAccept(e, offer.decision, offer.buyingClub, offer.player) }}> Accept Offer</button>
-                            <button className="declineOffer" disabled={offer.fedApproval != "BID APPROVED"} onClick={(e) => { handleDecline(e, offer.decision, offer.buyingClub, offer.player) }}> Decline Offer </button>
-                            <button className="negotiate" disabled={offer.fedApproval != "BID APPROVED"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.buyingClub, offer.player) }}> Invite to Negotiation</button>
-
+                            <td>{offer.name}</td>
+                            <td>{offer.totalSpend}</td>
+                            <td>{offer.totalRevenue}</td>
+                            <td>{offer.net}</td>
+                            <td>{offer.ffpStatus}</td>
+                            <button className="checkStatus" onClick={(e) => { handleCheck(e, offer.name, offer.totalSpend, offer.totalRevenue) }}> Check FFP Status</button>
+                            <Link to="/sendreq" style={{ textDecoration: "none" }}>
+                              <button className="sendWarning" disabled={offer.ffpStatus == "SAFE"}>Warn Club</button>
+                            </Link>
                         </tr>
                     )
                 })}
             </table>
         </div>
-
-        </>
+        </div>
     );
 };
 

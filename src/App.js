@@ -38,6 +38,7 @@ import FedNotifications from "./pages/fedNotifications/fedNotifications";
 import FedTransferSystem from "./pages/fedTransfersSystem/fedTransferSystem";
 import ClubFinancesPage from "./pages/clubFinances/clubFinances";
 import FinanceDataUpload from "./pages/financeDataForm/FinanceDataForm";
+import FedFFPCheck from "./pages/fedffpcheck/FedFfpCheck";
 
 function App() {
 
@@ -88,6 +89,7 @@ function App() {
             <Route path="fedtransfersystem" element={<FedTransferSystem/>}/>
             <Route path="clubfinancespage" element={<ClubFinancesPage/>} />
             <Route path="financedataupload" element={<FinanceDataUpload/>} />
+            <Route path="clubffpstatus" element={<FedFFPCheck/>} />
             <Route path="users">
               <Route
                 index
@@ -101,6 +103,7 @@ function App() {
             <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
             <Route path="stadiumclub" element={<RequireAuth> <ClubStadiumApp /> </RequireAuth>} />
             <Route path="stadiumfed" element={<RequireAuth><FedStadiumApp /></RequireAuth>} />
+
 
           </Route>
         </Routes>

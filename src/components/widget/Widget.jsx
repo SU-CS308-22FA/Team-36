@@ -25,6 +25,7 @@ const Widget = ({ type }) => {
   let tickets = 0;
   let shirts = 0;
   let prize = 0;
+  let status;
 
   useEffect(() => {
 
@@ -88,6 +89,7 @@ const Widget = ({ type }) => {
         shirts = offer.shirtSales;
         tickets = offer.ticketSales;
         prize = offer.prizes;
+        status = offer.ffpStatus;
     })
 
     console.log(Tsum);
@@ -100,7 +102,7 @@ const Widget = ({ type }) => {
           data = {
             title: "FFP STATUS",
             isMoney: false,
-            dataAssociated: "SAFE",
+            dataAssociated: status,
             icon: (
               <PersonOutlinedIcon
                 className="icon"

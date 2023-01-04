@@ -88,6 +88,12 @@ const FedSidebar = () => {
               <span>Transfer System</span>
             </li>
           </Link>
+          <Link to="/clubffpstatus" style={{textDecoration: "none"}}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon"/>
+              <span>Clubs Financial Fair Play Status</span>
+            </li>
+          </Link>
         </ul>
       </div>
       
