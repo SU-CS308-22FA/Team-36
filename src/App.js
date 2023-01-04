@@ -35,6 +35,9 @@ import SentOffersNotif from "./pages/sentoffersNoti/SentOffers_noti";
 import ReceivedOffersNotif from "./pages/receivedoffersNoti/receivedoffers_Noti";
 import FedSpendingLimit from "./pages/fedSpendingLimit/FedSpendingLimit";
 import ClubSpendingLimit from "./pages/clubSpendingLimit/ClubSpendingLimit";
+import Club_req from "./pages/club_req/club_req";
+import FedNotifications from "./pages/fedNotifications/fedNotifications";
+
 
 function App() {
 
@@ -80,6 +83,8 @@ function App() {
             <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
             {/* <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} /> */}
             <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
+            <Route path="club_req" element={<Club_req/>} />
+            <Route path="fedNotifications" element={<RequireAuth><FedNotifications/></RequireAuth>}/>
             <Route path="users">
               <Route
                 index

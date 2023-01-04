@@ -79,6 +79,12 @@ const ClubSidebar = () => {
               <span>Transfer System</span>
             </li>
           </Link>
+          <Link to="/club_req" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Send Request to Federation</span>
+            </li>
+          </Link>
           
           </Link>
           <Link to={"/players/" + club} style={{ textDecoration: "none" }}>
