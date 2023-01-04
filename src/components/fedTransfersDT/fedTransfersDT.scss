@@ -1,0 +1,90 @@
+.container {
+    
+.myTable {
+    
+  width: 900px;
+  height: 800px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    overflow: scroll;
+    margin: 0 auto;
+    margin-top: 0 auto;
+  
+    button {
+      display: flex;
+      flex-direction: row;
+      margin: 5px;
+      cursor: pointer;
+    }
+  
+    .approve {
+      color: green;
+      background-color: white;
+      border-color: green;
+      border-radius: 8px;
+    }
+  
+    .approve:hover{
+      transform:scale(1.1);
+    }
+  
+    .approve:disabled{
+      color: lightgray;
+      border-color: lightgray;
+      transform: none;
+      cursor: default;
+    }
+  
+    .checkStatus {
+      color: blue;
+      background-color: white;
+      border-color: blue;
+      border-radius: 8px;
+    }
+  
+    .checkStatus:hover{
+      transform:scale(1.1);
+    }
+
+    .disapprove {
+      color: red;
+      background-color: white;
+      border-color: red;
+      border-radius: 8px;
+    }
+  
+    .disapprove:hover{
+      transform:scale(1.1);
+    }
+  
+    .disapprove:disabled{
+      color: lightgray;
+      border-color: lightgray;
+      transform: none;
+      cursor: default;
+    }
+  
+    table {
+      border: 2px solid blue;
+      width: 800px;
+      height: 200px;
+      align-items: center;
+      justify-items: center;
+    }
+      
+    th {
+      border-bottom: 1px solid black;
+      gap: 0px;
+    }
+      
+    td {
+      text-align: center;
+      border-bottom: 1px solid black;
+    }
+  }
+    
+  
+}
+  

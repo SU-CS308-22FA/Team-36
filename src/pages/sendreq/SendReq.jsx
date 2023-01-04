@@ -1,17 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import ReactDOM from 'react-dom';
-import { db} from "../../firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+import { addDoc, collection, doc, getDoc, query, where, getDocs, onSnapshot } from "firebase/firestore";
 import './SendReq.scss';
 import { TextArea } from '@react-ui-org/react-ui';
 import Navbar from '../../components/navbar/Navbar';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
  
 const SendReq = () => {
+
+  let userName = "";
     const [wtype , setType] = useState('');
     const [title, setTitle] = useState('');
-    const [from , setFrom] = useState('');
+    const [from , setFrom] = useState(userName);
     const [sendTo , setSendTo] = useState('');
     const [content , setContent] = useState('');
+
+
+  
+  useEffect(() => {
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+
+        const getName = async () => {
+          const docRef = doc(db, "users", user.uid);
+
+          let docSnap = await getDoc(docRef);
+          if (docSnap.exists()) {
+            userName = docSnap.data().name;
+            setFrom(userName);
+          } else {
+            console.log("No such document!");
+          }
+
+        };
+        getName();
+      } else {
+        console.log("User is not logged in");
+      }
+    });
+
+  }, []);
 
     // function to update state of wtype with
     // value enter by user in form
@@ -52,7 +83,6 @@ const SendReq = () => {
         alert('A form was submitted with type :"' + wtype +
         '" ,from :"'+from +'" and to :"' + sendTo + '"');
         setTitle("");
-        setFrom("");
         setSendTo("");
         setContent("");
     }
@@ -87,7 +117,7 @@ const SendReq = () => {
         <label >
           From:
         </label><br/>
-        <input type="text" placeholder="Your Name" value={from} required onChange={(e) => {handleFrom(e)}} /><br/>
+        <input type="text" placeholder="Your Name" value={from} required/><br/>
             { /*when user write in from input box , handleFrom()
                function will be called. */}
         <label>

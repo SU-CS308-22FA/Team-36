@@ -37,6 +37,10 @@ import FedSpendingLimit from "./pages/fedSpendingLimit/FedSpendingLimit";
 import ClubSpendingLimit from "./pages/clubSpendingLimit/ClubSpendingLimit";
 import Club_req from "./pages/club_req/club_req";
 import FedNotifications from "./pages/fedNotifications/fedNotifications";
+import FedTransferSystem from "./pages/fedTransfersSystem/fedTransferSystem";
+import ClubFinancesPage from "./pages/clubFinances/clubFinances";
+import FinanceDataUpload from "./pages/financeDataForm/FinanceDataForm";
+import FedFFPCheck from "./pages/fedffpcheck/FedFfpCheck";
 
 
 function App() {
@@ -85,6 +89,10 @@ function App() {
             <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
             <Route path="club_req" element={<Club_req/>} />
             <Route path="fedNotifications" element={<RequireAuth><FedNotifications/></RequireAuth>}/>
+            <Route path="fedtransfersystem" element={<FedTransferSystem/>}/>
+            <Route path="clubfinancespage" element={<ClubFinancesPage/>} />
+            <Route path="financedataupload" element={<FinanceDataUpload/>} />
+            <Route path="clubffpstatus" element={<FedFFPCheck/>} />
             <Route path="users">
               <Route
                 index

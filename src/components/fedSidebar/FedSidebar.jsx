@@ -82,6 +82,16 @@ const FedSidebar = () => {
               <span>National</span>
             </li>
           </Link>
+          <Link to="/fedtransfersystem" style={{textDecoration: "none"}}>
+            <li>
+              <PersonOutlineIcon className="icon"/>
+              <span>Transfer System</span>
+            </li>
+          </Link>
+          <Link to="/clubffpstatus" style={{textDecoration: "none"}}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon"/>
+              <span>Clubs Financial Fair Play Status</span>
           <Link to="/spendinglimitfed" style={{ textDecoration: "none" }}>
             <li>
               <Public className="icon" />

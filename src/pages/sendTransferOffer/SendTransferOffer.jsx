@@ -9,67 +9,13 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const SendTransferOffer = () => {
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
-
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-
-        const fetchData = async () => {
-          const docRef = doc(db, "users", user.uid);
-
-          let docSnap = await getDoc(docRef);
-          if (docSnap.exists()) {
-            const q = query(collection(db, "users"), where("name", "==", docSnap.data().name));
-
-            let list = []
-            try {
-              const querySnapshot = await getDocs(q);
-              querySnapshot.forEach((doc) => {
-                list.push({ id: doc.id, ...doc.data() })
-              });
-              setData(list);
-            } catch (err) {
-              console.log(err);
-            }
-
-            const unsub = onSnapshot(
-              q,
-              (snapShot) => {
-                let list = [];
-                snapShot.docs.forEach((doc) => {
-                  list.push({ id: doc.id, ...doc.data() });
-                });
-                setData(list);
-              },
-              (error) => {
-                console.log(error);
-              }
-            );
-
-            return () => {
-              unsub();
-            };
-          } else {
-            console.log("No such document!");
-          }
-
-        };
-        fetchData()
-      } else {
-        console.log("User is not logged in");
-      }
-    });
-
-  }, []);
-
   const [bclub, setBClub] = useState('');
   const [fee, setFee] = useState('');
   const [player, setPlayer] = useState('');
   const [sclub, setSClub] = useState('');
   const [type, setType] = useState('');
   const[decision, setDecision] = useState("AWAITING DECISION");
+  const [approval, setApproval] = useState("AWAITING APPROVAL");
 
 
   const handleBClub = (e) => {
@@ -100,7 +46,9 @@ const SendTransferOffer = () => {
       "player": player,
       "sellingClub": sclub,
       "transferType": type,
-      "decision": decision
+      "decision": decision,
+      "fedApproval": approval,
+      "playerDecision": "pending"
     });
     alert('A transfer offer of "' + fee + '" was sent to :"' + sclub +
       '" from :"' + bclub + '" for the "' + type + '" of: "' + player);
