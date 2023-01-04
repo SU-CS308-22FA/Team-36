@@ -93,6 +93,13 @@ const ClubSidebar = () => {
               <span>Players</span>
             </li>
           </Link>
+
+          <Link to="/spendinglimitclub" style={{ textDecoration: "none" }}>
+            <li>
+              <Public className="icon" />
+              <span>Spending Limit</span>
+            </li>
+          </Link>
         </ul>
       </div>
       
