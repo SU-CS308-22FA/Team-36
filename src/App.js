@@ -33,12 +33,15 @@ import GalatasarayPlayers from "./pages/gsplayers/GSPlayers";
 import FenerbahcePlayers from "./pages/fbplayers/FBPlayers";
 import SentOffersNotif from "./pages/sentoffersNoti/SentOffers_noti";
 import ReceivedOffersNotif from "./pages/receivedoffersNoti/receivedoffers_Noti";
+import FedSpendingLimit from "./pages/fedSpendingLimit/FedSpendingLimit";
+import ClubSpendingLimit from "./pages/clubSpendingLimit/ClubSpendingLimit";
 import Club_req from "./pages/club_req/club_req";
 import FedNotifications from "./pages/fedNotifications/fedNotifications";
 import FedTransferSystem from "./pages/fedTransfersSystem/fedTransferSystem";
 import ClubFinancesPage from "./pages/clubFinances/clubFinances";
 import FinanceDataUpload from "./pages/financeDataForm/FinanceDataForm";
 import FedFFPCheck from "./pages/fedffpcheck/FedFfpCheck";
+
 
 function App() {
 
@@ -103,8 +106,8 @@ function App() {
             <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
             <Route path="stadiumclub" element={<RequireAuth> <ClubStadiumApp /> </RequireAuth>} />
             <Route path="stadiumfed" element={<RequireAuth><FedStadiumApp /></RequireAuth>} />
-
-
+            <Route path="spendinglimitfed" element={<FedSpendingLimit />} />
+            <Route path="spendinglimitclub" element={<ClubSpendingLimit />} />
           </Route>
         </Routes>
       </BrowserRouter>

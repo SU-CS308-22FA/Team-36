@@ -92,6 +92,10 @@ const FedSidebar = () => {
             <li>
               <AccountCircleOutlinedIcon className="icon"/>
               <span>Clubs Financial Fair Play Status</span>
+          <Link to="/spendinglimitfed" style={{ textDecoration: "none" }}>
+            <li>
+              <Public className="icon" />
+              <span>Spending Limit</span>
             </li>
           </Link>
         </ul>

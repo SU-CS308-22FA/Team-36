@@ -103,6 +103,10 @@ const ClubSidebar = () => {
             <li>
               <CreditCardIcon className="icon"/>
               <span>Upload Financial Data</span>
+          <Link to="/spendinglimitclub" style={{ textDecoration: "none" }}>
+            <li>
+              <Public className="icon" />
+              <span>Spending Limit</span>
             </li>
           </Link>
         </ul>
