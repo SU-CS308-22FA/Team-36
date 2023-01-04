@@ -10,7 +10,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const FinanceDataUpload = () => {
 
-    let teamName = "";
+  let teamName = "";
   useEffect(() => {
 
     const auth = getAuth();

@@ -1,10 +1,14 @@
+.container {
+    
 .myTable {
-    width: 100%;
-    height: 50vh;
+    
+  width: 900px;
+  height: 800px; 
     display: flex;
     justify-content: center;
     align-items: center;
-    //overflow-y: scroll;
+    justify-items: center;
+    overflow: scroll;
     margin: 0 auto;
     margin-top: 0 auto;
   
@@ -33,6 +37,17 @@
       cursor: default;
     }
   
+    .checkStatus {
+      color: blue;
+      background-color: white;
+      border-color: blue;
+      border-radius: 8px;
+    }
+  
+    .checkStatus:hover{
+      transform:scale(1.1);
+    }
+
     .disapprove {
       color: red;
       background-color: white;
@@ -55,7 +70,8 @@
       border: 2px solid blue;
       width: 800px;
       height: 200px;
-      
+      align-items: center;
+      justify-items: center;
     }
       
     th {
@@ -70,5 +86,5 @@
   }
     
   
-  
+}
   

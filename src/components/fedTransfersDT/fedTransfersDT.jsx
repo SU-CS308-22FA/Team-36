@@ -8,6 +8,7 @@ import { getAuth, onAuthStateChanged } from "firebase/auth";
 import * as React from 'react';
 import "rc-tooltip/assets/bootstrap.css";
 import Tooltip from "rc-tooltip";
+import { Link } from "react-router-dom";
 
 const FedTransfersDT = () => {
 
@@ -106,7 +107,6 @@ const FedTransfersDT = () => {
     return (
 
         <div className="container">
-    
         <div className="myTable">
             <table>
                 <tr>
@@ -134,7 +134,10 @@ const FedTransfersDT = () => {
 
                             <button className="approve" disabled={offer.fedApproval != "AWAITING APPROVAL"} onClick={(e) => { handleApprove(e, offer.fedApproval, offer.buyingClub, offer.player) }}> Approve Offer</button>
                             <button className="disapprove" disabled={offer.fedApproval != "AWAITING APPROVAL"} onClick={(e) => { handleDisapprove(e, offer.fedApproval, offer.buyingClub, offer.player) }}> Disapprove Offer </button>
-                            <button className="checkStatus"> Check Club Status</button>
+                            <Link to="/clubffpstatus" style={{ textDecoration: "none" }}>
+                             <button className="checkStatus"> Check Club FFP Status</button>
+                            </Link>
+                            
 
                         </tr>
                     )
