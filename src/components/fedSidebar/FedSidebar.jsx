@@ -101,6 +101,15 @@ const FedSidebar = () => {
               <span>Spending Limit</span>
             </li>
           </Link>
+          <Link to="/Economy" style={{ textDecoration: "none" }}>
+          <li>
+            <Public className="icon" />
+            <span>Economy</span>
+          </li>
+          </Link>
+
+
+          
         </ul>
       </div>
       

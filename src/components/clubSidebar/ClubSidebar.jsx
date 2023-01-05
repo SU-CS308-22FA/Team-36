@@ -33,6 +33,9 @@ const ClubSidebar = () => {
     })
   }, [])
 
+
+const ClubSidebar = () => {
+  
   return (
     <div className="sidebar">
       <div className="top">
@@ -68,16 +71,17 @@ const ClubSidebar = () => {
               <span>Send Player Contract Renewal</span>
             </li>
           </Link>
-          <Link to="/stadiumclub" style={{ textDecoration: "none" }}>
+          <Link to="/broadcasting" style={{ textDecoration: "none" }}>
             <li>
               <StoreIcon className="icon" />
-              <span>Stadium Reservation</span>
+              <span>Share Of The Broadcasting</span>
             </li>
           </Link>
-          <Link to="/transfersystem" style={{ textDecoration: "none" }}>
+          <Link to="/transfersystem" style={{ textDecoration: "none" }}></Link>
+          <Link to="/download_c" style={{ textDecoration: "none" }}>
             <li>
-              <PersonOutlineIcon className="icon" />
-              <span>Transfer System</span>
+              <StoreIcon className="icon" />
+              <span>Document Download</span>
             </li>
           </Link>
           <Link to="/club_req" style={{ textDecoration: "none" }}>
@@ -116,11 +120,14 @@ const ClubSidebar = () => {
               <span>5 Year NET Profit Form</span>
             </li>
           </Link>
+          
+          
+          
         </ul>
       </div>
 
     </div>
   );
 };
-
+}
 export default ClubSidebar;
