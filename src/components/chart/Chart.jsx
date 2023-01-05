@@ -23,6 +23,7 @@ const data = [
 const Chart = ({ aspect, title }) => {
 
   const [allData, setData] = useState([]);
+  const [alternate, setAlt] = useState([]);
 
   useEffect(() => {
 
@@ -70,7 +71,49 @@ const Chart = ({ aspect, title }) => {
           }
 
         };
+        const REfetchData = async () => {
+          const docRef = doc(db, "users", user.uid);
+          let docSnap = await getDoc(docRef);
+         
+        if (docSnap.exists()) {
+
+          const q = query(collection(db, "clubFinances"), where("name", "==", docSnap.data().name));
+
+          let list = []
+          try {
+            const querySnapshot = await getDocs(q);
+            querySnapshot.forEach((doc) => {
+              list.push({ id: doc.id, ...doc.data() })
+            });
+            setAlt(list);
+          } catch (err) {
+            console.log(err);
+          }
+
+          const unsub = onSnapshot(
+            q,
+            (snapShot) => {
+              let list = [];
+              snapShot.docs.forEach((doc) => {
+                list.push({ id: doc.id, ...doc.data() });
+              });
+              setAlt(list);
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+
+          return () => {
+            unsub();
+          };
+        } else {
+          console.log("No such document!");
+        }
+
+      };
         fetchData()
+        REfetchData()
        } else {
          console.log("User is not logged in");
        }
@@ -82,11 +125,18 @@ let count = 0;
 
 data.forEach((item) => {
     allData.map((one) => {
-    if (count == 0) {item.Total = one.year19; count++;}
-    else if (count == 1) {item.Total = one.year20; count++}
-    else if (count == 2) {item.Total = one.year21; count++}
-    else if (count == 3) {item.Total = one.year22; count++}
-    else {item.Total = one.year23;}})
+      alternate.map((two) => { 
+      if (count == 0) {item.Total = one.year19; count++;}
+      else if (count == 1) {item.Total = one.year20; count++}
+      else if (count == 2) {item.Total = one.year21; count++}
+      else if (count == 3) {item.Total = one.year22; count++}
+      else {
+        
+        if(one.year23 == 0){
+          item.Total = two.net;
+        } else {item.Total = one.year23;}
+        }})
+   })
     
 })
 

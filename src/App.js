@@ -41,6 +41,7 @@ import FedTransferSystem from "./pages/fedTransfersSystem/fedTransferSystem";
 import ClubFinancesPage from "./pages/clubFinances/clubFinances";
 import FinanceDataUpload from "./pages/financeDataForm/FinanceDataForm";
 import FedFFPCheck from "./pages/fedffpcheck/FedFfpCheck";
+import Profit5years from "./pages/5yeardata/profit5years";
 
 
 function App() {
@@ -93,6 +94,7 @@ function App() {
             <Route path="clubfinancespage" element={<ClubFinancesPage/>} />
             <Route path="financedataupload" element={<FinanceDataUpload/>} />
             <Route path="clubffpstatus" element={<FedFFPCheck/>} />
+            <Route path="profit5yearsform" element={<Profit5years/>}/>
             <Route path="users">
               <Route
                 index
