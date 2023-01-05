@@ -13,6 +13,7 @@
     "@progress/kendo-react-dropdowns": "^5.9.0",
     "@progress/kendo-react-intl": "^5.9.0",
     "@react-ui-org/react-ui": "^0.49.0",
+    "@stripe/react-stripe-js": "^1.16.2",
     "@syncfusion/ej2-base": "^20.3.56",
     "@syncfusion/ej2-buttons": "^20.3.58",
     "@syncfusion/ej2-data": "^20.3.60",
@@ -39,6 +40,7 @@
     "react-bootstrap": "^2.6.0",
     "react-bootstrap-sidebar-menu": "^2.0.3",
     "react-circular-progressbar": "^2.0.4",
+    "react-credit-card-input": "^1.1.5",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.15.0",
     "react-password-checklist": "^1.4.2",
@@ -48,6 +50,7 @@
     "reactjs-popup": "^2.0.5",
     "recharts": "^2.1.9",
     "sass": "^1.49.9",
+    "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

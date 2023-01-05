@@ -13,7 +13,7 @@ const Fed_pay = () => {
     const [data, setData] = useState([])
     const navigate = useNavigate();
     const [admin, setAdmin] = useState();
-    const [open, setOpen] = useState(true);
+    const [open, setOpen] = useState(false);
     const [club, setClub] = useState();
     const [type, setType] = useState();
     const [amount, setAmount] = useState();
@@ -52,13 +52,14 @@ const Fed_pay = () => {
      * @param {json} param 
      */
     const navigateTo = (param) => {
-        console.log(param.name)
+        console.log(param.name, ' it is here')
         navigate("/pay_fed_player/" + param.name)
     }
 
     const openForm = (club) => {
         setOpen(true)
-        setClub(club)
+        setClub(club.name)
+        console.log(club.name)
     }
 
     /**
@@ -68,15 +69,16 @@ const Fed_pay = () => {
     const handlePay = async (e) => {
         // console.log()
         //here
+        console.log(type, amount, admin.email, club)
         e.preventDefault();
         try {
             await addDoc(collection(db, "FinesToClubs"), {
                 "type": type,
                 "fines": amount,
                 "from": admin.email,
-                "to": club.name
+                "to": club
             });
-            alert("Payment alert sent to " + club.email)
+            alert("Payment alert sent to " + club)
         } catch (err) {
             console.log(err);
         }
@@ -105,6 +107,7 @@ const Fed_pay = () => {
 
     const onClose = () => {
         console.log('here')
+        setOpen(false)
     }
 
     return (
@@ -139,9 +142,10 @@ const Fed_pay = () => {
                             <div className='content'>
                                 <form onSubmit={handlePay}>
                                     <label for="payment">Payment Type</label>
-                                    <select name="payment" id="payment" onChange={(e) => setType(e.target.value)}>
-                                        <option value="taxes">Tax</option>
-                                        <option value="fines">Fine</option>
+                                    <select name="payment" id="payment" required onChange={(e) => setType(e.target.value)}>
+                                        <option value= "" selected disabled hidde>--- Choose an Option ---</option>
+                                        <option value="Tax">Tax</option>
+                                        <option value="fine">Fine</option>
                                     </select>
                                     {/* <input type="submit" value="Submit" /> */}
                                     <input className='inp' type="text" placeholder='Amount' onChange={(e) => setAmount(e.target.value)} />

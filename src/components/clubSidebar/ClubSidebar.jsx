@@ -12,7 +12,7 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
-import { Accessibility, Public } from "@mui/icons-material";
+import { Accessibility, Payment, Public } from "@mui/icons-material";
 import { useState, useEffect } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth, db } from "../../firebase";
@@ -28,27 +28,27 @@ const ClubSidebar = () => {
         const docRef = doc(db, "users", user.uid)
         const docSnap = await getDoc(docRef);
         setClub(docSnap.data().name)
-     }
-     fetchData()
+      }
+      fetchData()
     })
   }, [])
 
   return (
     <div className="sidebar">
       <div className="top">
-        
-          <span className="logo">F.F.P</span>
-        
+
+        <span className="logo">F.F.P</span>
+
       </div>
       <hr />
       <div className="center">
         <ul>
           <p className="title">SERVICES</p>
           <Link to="/clubhome" style={{ textDecoration: "none" }}>
-          <li>
-            <DashboardIcon className="icon" />
-            <span>Home</span>
-          </li>
+            <li>
+              <DashboardIcon className="icon" />
+              <span>Home</span>
+            </li>
           </Link>
           <Link to="/notifications" style={{ textDecoration: "none" }}>
             <li>
@@ -73,13 +73,12 @@ const ClubSidebar = () => {
               <StoreIcon className="icon" />
               <span>Stadium Reservation</span>
             </li>
+          </Link>
           <Link to="/transfersystem" style={{ textDecoration: "none" }}>
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Transfer System</span>
             </li>
-          </Link>
-          
           </Link>
           <Link to={"/players/" + club} style={{ textDecoration: "none" }}>
             <li>
@@ -87,9 +86,15 @@ const ClubSidebar = () => {
               <span>Players</span>
             </li>
           </Link>
+          <Link to="/clubpay" style={{ textDecoration: "none" }}>
+            <li>
+              <Payment className="icon" />
+              <span>Pay Fee</span>
+            </li>
+          </Link>
         </ul>
       </div>
-      
+
     </div>
   );
 };

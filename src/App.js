@@ -8,6 +8,7 @@ import Signup from "./pages/signup/Signup";
 import Notifications from "./pages/notifications/notifications";
 import ClubToPlayerCom from "./pages/clubtoplayercom/ClubToPlayerCom";
 import AddPlayers from "./pages/addplayers/AddPlayers";
+import ClubPay from "./pages/club_pay/ClubPay";
 import NewProposal from "./pages/newproposal/NewProposal";
 import PlayerToClub from "./pages/playertoclubcom/PlayerToClubCom";
 import Renewing from "./pages/renewing/Renewing";
@@ -80,7 +81,8 @@ function App() {
             <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
             <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
             <Route path="pay_fed" element={<RequireAuth><Fed_pay/></RequireAuth>} />
-            <Route path="pay_fed_player/:club" element={<RequireAuth><Pay_player/></RequireAuth>} />
+            <Route path="pay_fed_player/:clubName" element={<RequireAuth><Pay_player/></RequireAuth>} />
+            <Route path="clubpay" element={<RequireAuth><ClubPay/></RequireAuth>} />
             <Route path="users">
               <Route
                 index
