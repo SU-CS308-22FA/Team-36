@@ -16,11 +16,11 @@ const handleSomma = async (e) => {
     //let docSnap = await getDoc(docRef);
     //let www = query(collection(db, "FinesToPlayers"), where("from", "==", "Fenerbahce"))
     const fetchData = async () => {
-    //const docRef = doc(db, "users");
-    //let docSnap = await getDoc(docRef);
+    const docRef = doc(db, "users");
+    let docSnap = await getDoc(docRef);
     //let ccc = query(collection(db, "ClubFin"), where("Income", "!=", 0));
     //let cccc = query(collection(db,"FinesToPlayers"));
-    let ccccc = query(collection(db, "ClubFin"), where ("Name", "==",/*docSnap.data().name*/))
+    let ccccc = query(collection(db, "ClubFin"), where ("Name", "==",docSnap.data().name))
     let xx = await getDocs(ccccc);
     xx.forEach(async (oo) => {
         await updateDoc(oo.ref, "Income", "" )
@@ -31,6 +31,8 @@ const handleSomma = async (e) => {
 
 const handlePayment = async (e) => { 
     e.preventDefault();
+    const docRef = doc(db, "users");
+    let docSnap = await getDoc(docRef);
     let cc = query(collection(db, "FinesToPlayers"), where("fines", "!=", 0));
     let x = await getDocs(cc);
     x.forEach(async (o) => {

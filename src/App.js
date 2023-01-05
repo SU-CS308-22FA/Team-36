@@ -16,12 +16,15 @@ import SendReq from "./pages/sendreq/SendReq";
 import Deadline_setting from "./pages/deadline_setting/Deadline_setting";
 import Broadcasting_rights_distribution from "./pages/broadcasting_rights_distribution/Broadcasting_rights_distribution";
 import FedHome from "./pages/fedHome/FedHome";
+import Fines from "./pages/fines/Fines";
 import ClubHome from "./pages/clubHome/ClubHome";
 import Broadcasting from "./pages/broadcasting/Broadcasting";
 import PlayerHome from "./pages/playerHome/PlayerHome";
 import Upload_c from "./pages/club_upload/Upload_c";
 import DownloadC from "./pages/download_c/Download_c";
 import Download_d from "./pages/download_d/Download_d";
+import PaymentFines from "./pages/paymentFines/PaymentFines";
+import Economy from "./pages/economy/Economy";
 
 function App() {
 
@@ -52,6 +55,9 @@ function App() {
             <Route path="RequestLeaving" element={<RequestLeaving/>} />
             <Route path="download_c" element={<DownloadC />} />
             <Route path="sendreq" element={<SendReq/>} />
+            <Route path="fines" element={<Fines/>} />
+            <Route path="Economy" element={<Economy/>} />
+            <Route path="paymentfines" element={<PaymentFines/>} />
             <Route path="download_d" element={<Download_d/>} />
             <Route path="notifications" element={<RequireAuth><Notifications/></RequireAuth>}/>
             <Route path="fedhome" element={<RequireAuth><FedHome /></RequireAuth>} />

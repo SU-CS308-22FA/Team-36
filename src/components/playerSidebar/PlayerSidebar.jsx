@@ -51,6 +51,12 @@ const PlayerSidebar = () => {
             <span>Transfer System</span>
           </li>
           </Link>
+          <Link to="/Fines" style={{ textDecoration: "none" }}>
+          <li>
+            <DashboardIcon className="icon" />
+            <span>Fines</span>
+          </li>
+          </Link>
           
           
           
