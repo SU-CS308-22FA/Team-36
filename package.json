@@ -42,7 +42,6 @@
     "react-bootstrap": "^2.6.0",
     "react-bootstrap-sidebar-menu": "^2.0.3",
     "react-circular-progressbar": "^2.0.4",
-    "react-credit-card-input": "^1.1.5",
     "react-dom": "^17.0.2",
     "react-draft-wysiwyg": "^1.15.0",
     "react-password-checklist": "^1.4.2",
