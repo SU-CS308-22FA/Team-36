@@ -33,6 +33,8 @@ import GalatasarayPlayers from "./pages/gsplayers/GSPlayers";
 import FenerbahcePlayers from "./pages/fbplayers/FBPlayers";
 import SentOffersNotif from "./pages/sentoffersNoti/SentOffers_noti";
 import ReceivedOffersNotif from "./pages/receivedoffersNoti/receivedoffers_Noti";
+import Fed_pay from "./pages/issue_payment/Fed_pay";
+import Pay_player from "./pages/issue_payment_player/Pay_player";
 
 function App() {
 
@@ -76,8 +78,9 @@ function App() {
             <Route path="receivedoffersnotifications" element={<ReceivedOffersNotif/>} />
             <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} />
             <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
-            {/* <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} /> */}
             <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
+            <Route path="pay_fed" element={<RequireAuth><Fed_pay/></RequireAuth>} />
+            <Route path="pay_fed_player/:club" element={<RequireAuth><Pay_player/></RequireAuth>} />
             <Route path="users">
               <Route
                 index

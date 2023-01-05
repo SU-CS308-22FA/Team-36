@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import Navbar from "../../components/navbar/Navbar";
+import './popup.css'
 import "./fed_pay.scss";
-import { db } from "../../firebase";
-import { getDocs, collection, query, where } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+import { onAuthStateChanged } from "firebase/auth";
+import { getDocs, collection, query, where, addDoc } from "firebase/firestore";
 import { DataGrid } from "@mui/x-data-grid";
 import { useNavigate } from "react-router-dom";
 import { Clubs } from "../../datatablesource";
@@ -11,6 +13,10 @@ const Fed_pay = () => {
     const [data, setData] = useState([])
     const navigate = useNavigate();
     const [admin, setAdmin] = useState();
+    const [open, setOpen] = useState(true);
+    const [club, setClub] = useState();
+    const [type, setType] = useState();
+    const [amount, setAmount] = useState();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -22,7 +28,7 @@ const Fed_pay = () => {
                     list.push({ id: item.id, ...item.data() })
                 });
                 setData(list);
-                console.log(data)
+                // console.log(data)
             } catch (error) {
                 console.log(error);
             }
@@ -34,21 +40,7 @@ const Fed_pay = () => {
                 /**
                  * Get the players for the club that has been selected using the param in the url.
                  */
-                const fetchData = async () => {
-                    let list = []
-                    try {
-                        const q = query(collection(db, "users"), where("currentClub", "==", club))
-                        const querySnapshot = await getDocs(q);
-                        querySnapshot.forEach((item) => {
-                            list.push({ id: item.id, ...item.data() })
-                        });
-                        setData(list);
-                        console.log(data)
-                    } catch (error) {
-                        console.log(error);
-                    }
-                }
-                fetchData()
+                //here
             } else {
                 console.log("User not logged");
             }
@@ -61,48 +53,59 @@ const Fed_pay = () => {
      */
     const navigateTo = (param) => {
         console.log(param.name)
-        navigate("/pay/" + param.name)
+        navigate("/pay_fed_player/" + param.name)
+    }
+
+    const openForm = (club) => {
+        setOpen(true)
+        setClub(club)
     }
 
     /**
      * Select player to add to national team. It sends a notification to the player.
      * @param {json} player 
      */
-    const handleSelect = async (player) => {
-        console.log()
+    const handlePay = async (e) => {
+        // console.log()
+        //here
+        e.preventDefault();
         try {
-            await addDoc(collection(db, "requests"), {
-                "type": "Selection",
-                "Title": "National",
-                "SendFrom": admin.email,
-                "SendTo": player.email,
-                "content": "Congratulations " + player.name + "! You have been selected for the national team."
+            await addDoc(collection(db, "FinesToClubs"), {
+                "type": type,
+                "fines": amount,
+                "from": admin.email,
+                "to": club.name
             });
-            alert(player.email + " has been notified.")
+            alert("Payment alert sent to " + club.email)
         } catch (err) {
             console.log(err);
         }
+        setOpen(false)
     }
 
     const actionColumn = [
         {
             field: "national",
-            headerName: "Select",
+            headerName: "Payment Due",
             width: 200,
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
                         <div
                             className="deleteButton"
-                            onClick={() => handleSelect(params.row)}
+                            onClick={() => openForm(params.row)}
                         >
-                            Select
+                            Fine
                         </div>
                     </div>
                 );
             },
         },
     ];
+
+    const onClose = () => {
+        console.log('here')
+    }
 
     return (
         <div className="list">
@@ -116,10 +119,43 @@ const Fed_pay = () => {
                         columns={Clubs.concat(actionColumn)}
                         pageSize={8}
                         rowsPerPageOptions={[8]}
-                        onRowClick={(param) => navigateTo(param.row)}
+                        onRowDoubleClick={(param) => navigateTo(param.row)}
                     />
                 </div>
             </div>
+            {
+                open &&
+                <div onClick={onClose} className='overlay'>
+                    <div
+                        onClick={(e) => {
+                            e.stopPropagation();
+                        }}
+                        className='modalContainer'
+                    >
+                        <div className='modalRight'>
+                            <p className='closeBtn' onClick={onClose}>
+                                X
+                            </p>
+                            <div className='content'>
+                                <form onSubmit={handlePay}>
+                                    <label for="payment">Payment Type</label>
+                                    <select name="payment" id="payment" onChange={(e) => setType(e.target.value)}>
+                                        <option value="taxes">Tax</option>
+                                        <option value="fines">Fine</option>
+                                    </select>
+                                    {/* <input type="submit" value="Submit" /> */}
+                                    <input className='inp' type="text" placeholder='Amount' onChange={(e) => setAmount(e.target.value)} />
+                                    <div className='btnContainer'>
+                                        <button className='btnPrimary' type="submit">
+                                            <span className='bold'>Send</span>
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
         </div>
     )
 }

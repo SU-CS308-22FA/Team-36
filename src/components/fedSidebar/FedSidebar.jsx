@@ -12,7 +12,8 @@ import SettingsSystemDaydreamOutlinedIcon from "@mui/icons-material/SettingsSyst
 import PsychologyOutlinedIcon from "@mui/icons-material/PsychologyOutlined";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import { Link } from "react-router-dom";
-import { Public } from "@mui/icons-material";
+import { BroadcastOnPersonal, DocumentScannerOutlined, ErrorOutline, Public, RequestPage, RequestQuote } from "@mui/icons-material";
+import { Alert } from "@mui/material";
 
 
 const FedSidebar = () => {
@@ -42,25 +43,25 @@ const FedSidebar = () => {
           </Link>
           <Link to="/deadlinesfed" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <ErrorOutline className="icon" />
               <span>Set Deadline</span>
             </li>
           </Link>
           <Link to="/broadcasting-distribution" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <BroadcastOnPersonal className="icon" />
               <span>Broadcasting Rights</span>
             </li>
           </Link>
           <Link to="/sendreq" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <RequestPage className="icon" />
               <span>Send Request to Clubs</span>
             </li>
           </Link>
           <Link to="/fedhome" style={{ textDecoration: "none" }}>
             <li>
-              <StoreIcon className="icon" />
+              <DocumentScannerOutlined className="icon" />
               <span>Clubs' Documents</span>
             </li>
           </Link>
@@ -74,6 +75,12 @@ const FedSidebar = () => {
             <li>
               <Public className="icon" />
               <span>National</span>
+            </li>
+          </Link>
+          <Link to="/pay_fed" style={{ textDecoration: "none" }}>
+            <li>
+              <RequestQuote className="icon" />
+              <span>Fee</span>
             </li>
           </Link>
         </ul>
