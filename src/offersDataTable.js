@@ -1,8 +1,14 @@
 export const offers_usercolumns = [
     {
         field: "decision",
-        headerName: "Decision",
+        headerName: "Club Decision",
         width: 550
+    },
+
+    {
+      field: "fedApproval",
+      headerName: "Federation Decision",
+      width: 200
     },
 
     {
@@ -35,6 +41,12 @@ export const offers_usercolumns = [
         field: "decision",
         headerName: "Decision",
         width: 230
+    },
+
+    {
+      field: "fedApproval",
+      headerName: "Federation Decision",
+      width: 230
     },
 
     {

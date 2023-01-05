@@ -1,0 +1,79 @@
+.desc {
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
+  font-weight: bold;
+  text-align: center;
+}
+
+  .myTable {
+    width: 100%;
+    height: 50vh;
+    justify-content: center;
+    align-items: center;
+  
+    button {
+      display: flex;
+      flex-direction: row;
+      margin: 5px;
+      cursor: pointer;
+    }
+  
+    .checkStatus {
+      color: green;
+      background-color: white;
+      border-color: green;
+      border-radius: 8px;
+    }
+  
+    .checkStatus:hover{
+      transform:scale(1.1);
+    }
+  
+    .checkStatus:disabled{
+      color: lightgray;
+      border-color: lightgray;
+      transform: none;
+      cursor: default;
+    }
+  
+    .sendWarning {
+      color: red;
+      background-color: white;
+      border-color: red;
+      border-radius: 8px;
+    }
+  
+    .sendWarning:hover{
+      transform:scale(1.1);
+    }
+  
+    .sendWarning:disabled{
+      color: lightgray;
+      border-color: lightgray;
+      transform: none;
+      cursor: default;
+    }  
+  
+    table {
+      border: 2px solid red;
+      width: 800px;
+      height: 200px;
+      
+    }
+      
+    th {
+      border-bottom: 1px solid black;
+      gap: 0px;
+    }
+      
+    td {
+      text-align: center;
+      border-bottom: 1px solid black;
+    }
+  }
+
+    
+  
+  
+  

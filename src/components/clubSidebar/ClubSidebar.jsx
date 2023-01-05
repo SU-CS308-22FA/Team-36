@@ -80,16 +80,40 @@ const ClubSidebar = () => {
               <span>Transfer System</span>
             </li>
           </Link>
+          <Link to="/club_req" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Send Request to Federation</span>
+            </li>
+          </Link>
           <Link to={"/players/" + club} style={{ textDecoration: "none" }}>
             <li>
               <Accessibility className="icon" />
               <span>Players</span>
             </li>
           </Link>
-          <Link to="/clubpay" style={{ textDecoration: "none" }}>
+          <Link to="/clubfinancespage" style={{textDecoration: "none"}}>
             <li>
-              <Payment className="icon" />
-              <span>Pay Fee</span>
+              <InsertChartIcon className="icon"/>
+              <span>Manage Finances</span>
+            </li>
+          </Link>
+          <Link to="/financedataupload" style={{textDecoration: "none"}}>
+            <li>
+              <CreditCardIcon className="icon"/>
+              <span>Upload Financial Data</span>
+           </li>
+          </Link>
+          <Link to="/spendinglimitclub" style={{ textDecoration: "none" }}>
+            <li>
+              <Public className="icon" />
+              <span>Spending Limit</span>
+            </li>
+          </Link>
+          <Link to="/profit5yearsform" style={{ textDecoration: "none" }}>
+            <li>
+              <LocalShippingIcon className="icon" />
+              <span>5 Year NET Profit Form</span>
             </li>
           </Link>
         </ul>

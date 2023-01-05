@@ -58,36 +58,8 @@ const GSTable = () => {
       field: "action",
       headerName: "Action",
       width: 500,
-      // renderCell: () => {
-      //   return (
-      //    // data.map((offer) => {
-      //       <div className="cellAction">
-      //         <Link to="/sendoffer" style={{ textDecoration: "none" }}>
-      //           <div className="offerButton">Send Transfer Offer To Club</div>
-      //         </Link>
-      //         <Link to="/contractproposal" style={{ textDecoration: "none" }}>
-      //           <div className="contractButton">Send a Contract Proposal To Player</div>
-      //         </Link>
-
-      //       </div>
-      //    // })
-      //   );
-      // },
       renderCell: () => {
         return (
-          // data.map((offer) => {
-
-          //   <div className="buttonSet">
-
-          //   <Link to="/sendoffer" style={{ textDecoration: "none" }}>
-          //     <button className="sendOffer">Send Offer To Club</button>
-          //   </Link>
-          //   <Link to="/contractproposal" style={{ textDecoration: "none" }}>
-          //     <button className="sendContract" disabled={offer.decision == "AWAITING DECISION"}>Send Contract Proposal To Player</button>
-          //   </Link>
-          // </div>
-          // })
-
             <div className="buttonSet">
 
             <Link to="/sendoffer" style={{ textDecoration: "none" }}>

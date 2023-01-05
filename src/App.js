@@ -34,8 +34,16 @@ import GalatasarayPlayers from "./pages/gsplayers/GSPlayers";
 import FenerbahcePlayers from "./pages/fbplayers/FBPlayers";
 import SentOffersNotif from "./pages/sentoffersNoti/SentOffers_noti";
 import ReceivedOffersNotif from "./pages/receivedoffersNoti/receivedoffers_Noti";
-import Fed_pay from "./pages/issue_payment/Fed_pay";
-import Pay_player from "./pages/issue_payment_player/Pay_player";
+import FedSpendingLimit from "./pages/fedSpendingLimit/FedSpendingLimit";
+import ClubSpendingLimit from "./pages/clubSpendingLimit/ClubSpendingLimit";
+import Club_req from "./pages/club_req/club_req";
+import FedNotifications from "./pages/fedNotifications/fedNotifications";
+import FedTransferSystem from "./pages/fedTransfersSystem/fedTransferSystem";
+import ClubFinancesPage from "./pages/clubFinances/clubFinances";
+import FinanceDataUpload from "./pages/financeDataForm/FinanceDataForm";
+import FedFFPCheck from "./pages/fedffpcheck/FedFfpCheck";
+import Profit5years from "./pages/5yeardata/profit5years";
+
 
 function App() {
 
@@ -80,9 +88,13 @@ function App() {
             <Route path="players/:club" element={<RequireAuth><Players /></RequireAuth>} />
             <Route path="national/:club" element={<RequireAuth><Select /></RequireAuth>} />
             <Route path="national" element={<RequireAuth><National/></RequireAuth>} />
-            <Route path="pay_fed" element={<RequireAuth><Fed_pay/></RequireAuth>} />
-            <Route path="pay_fed_player/:clubName" element={<RequireAuth><Pay_player/></RequireAuth>} />
-            <Route path="clubpay" element={<RequireAuth><ClubPay/></RequireAuth>} />
+            <Route path="club_req" element={<Club_req/>} />
+            <Route path="fedNotifications" element={<RequireAuth><FedNotifications/></RequireAuth>}/>
+            <Route path="fedtransfersystem" element={<FedTransferSystem/>}/>
+            <Route path="clubfinancespage" element={<ClubFinancesPage/>} />
+            <Route path="financedataupload" element={<FinanceDataUpload/>} />
+            <Route path="clubffpstatus" element={<FedFFPCheck/>} />
+            <Route path="profit5yearsform" element={<Profit5years/>}/>
             <Route path="users">
               <Route
                 index
@@ -96,7 +108,8 @@ function App() {
             <Route path="upload_c" element={<RequireAuth><Upload_c/></RequireAuth>} />
             <Route path="stadiumclub" element={<RequireAuth> <ClubStadiumApp /> </RequireAuth>} />
             <Route path="stadiumfed" element={<RequireAuth><FedStadiumApp /></RequireAuth>} />
-
+            <Route path="spendinglimitfed" element={<FedSpendingLimit />} />
+            <Route path="spendinglimitclub" element={<ClubSpendingLimit />} />
           </Route>
         </Routes>
       </BrowserRouter>

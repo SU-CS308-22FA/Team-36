@@ -13,6 +13,8 @@ import { AccessAlarmTwoTone } from "@mui/icons-material";
 const ReceivedContractProposalsDT = () => {
 
     const [data, setData] = useState([]);
+    const [proposals, setProp] = useState([]);
+    const [playerName, setPName] = useState();
 
     const user = auth.currentUser;
 
@@ -28,7 +30,7 @@ const ReceivedContractProposalsDT = () => {
                     let docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
 
-                        const q = query(collection(db, "TScontractProposals"), where("player", "==", docSnap.data().name));
+                        const q = query(collection(db, "transferOffers"), where("player", "==", docSnap.data().name));
 
                         let list = []
                         try {
@@ -64,31 +66,55 @@ const ReceivedContractProposalsDT = () => {
 
                 };
                 fetchData()
+                const REfetchData = async () => {
+                    const docRef = doc(db, "users", user.uid);
+
+                    let docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+
+                        const q = query(collection(db, "TScontractProposals"), where("player", "==", docSnap.data().name));
+                        setPName(docSnap.data().name);
+
+                        let list = []
+                        try {
+                            const querySnapshot = await getDocs(q);
+                            querySnapshot.forEach((doc) => {
+                                list.push({ id: doc.id, ...doc.data() })
+                            });
+                            setProp(list);
+                        } catch (err) {
+                            console.log(err);
+                        }
+
+                        const unsub = onSnapshot(
+                            q,
+                            (snapShot) => {
+                                let list = [];
+                                snapShot.docs.forEach((doc) => {
+                                    list.push({ id: doc.id, ...doc.data() });
+                                });
+                                setProp(list);
+                            },
+                            (error) => {
+                                console.log(error);
+                            }
+                        );
+
+                        return () => {
+                            unsub();
+                        };
+                    } else {
+                        console.log("No such document!");
+                    }
+
+                };
+                REfetchData();
             } else {
                 console.log("User is not logged in");
             }
         });
 
     }, []);
-
-    console.log(data)
-
-    // const actionColumn = [
-    //     {
-    //       field: "action",
-    //       headerName: "Action",
-    //       width: 500,
-    //       renderCell: () => {
-    //         return (
-    //           <div className="cellAction">
-    //             <div className="acceptButton">Accept Proposal</div>
-    //             <div className="rejectButton">Decline Proposal</div>
-    //             <div className="negotiateButton">Invite to Negotiation</div>
-    //           </div>
-    //         );
-    //       },
-    //     },
-    //   ];
 
     const handleAccept = async (e, deci, from, to) => {
 
@@ -134,37 +160,31 @@ const ReceivedContractProposalsDT = () => {
 
     }
 
-    // return (
+    const handleClubChange = async (e, deci, newClub) => {
+        e.preventDefault();
 
-    //     <div className="table">
+         let q_role = query(collection(db, "users"), where("role", "==", "Player"));
+         let q_for = query(q_role, where("name", "==", playerName));
 
-    //         {data.map((offer) => (
-    //             < div className="row" >
-    //                 <label>
-    //                     Decision:   {offer.decision}
-    //                 </label>
-    //                 <label>
-    //                     Offer From: {offer.offerFrom}
-    //                 </label>
-    //                 <label>
-    //                     Offer Type: {offer.transferType}
-    //                 </label>
-    //                 <label>
-    //                     Salary Offered: {offer.salaryOffer}
-    //                 </label>
-    //                 <label>
-    //                     Contract Duration: {offer.duration}
-    //                 </label>
+         let thisPlayer = await getDocs(q_for);
 
-    //                 <button className="acceptOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleAccept(e, offer.decision, offer.offerFrom, offer.player)}}> Accept Offer</button>
-    //                 <button className="declineOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleDecline(e, offer.decision, offer.offerFrom, offer.player) }}> Decline Offer </button>
-    //                 <button className="negotiate" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.offerFrom, offer.player) }}> Invite to Negotiation</button>
-    //             </div>
-    //         )
-    //         )}
-    //     </div >
+         if (deci == "OFFER ACCEPTED") {
 
-    // );
+             thisPlayer.forEach(async (offer) => {
+                await updateDoc(offer.ref, "currentClub", newClub)
+            })
+        } 
+    }
+        const handleClick = (e, deci, from, to) => {
+
+            data.map((yalla) => {
+
+                handleAccept(e, deci, from, to);
+                handleClubChange(e, yalla.decision, from);
+
+            })
+           
+        }
 
     return (
         <div className="myTable">
@@ -177,20 +197,21 @@ const ReceivedContractProposalsDT = () => {
               <th>Duration Proposed</th>
               <th>Action</th>
             </tr>
-            {data.map((offer, key) => {
-              return (
-                <tr key={key}>
-                  <td>{offer.decision}</td>
-                  <td>{offer.offerFrom}</td>
-                  <td>{offer.transferType}</td>
-                  <td>{offer.salaryOffer}</td>
-                  <td>{offer.duration}</td>
-                  <button className="acceptOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleAccept(e, offer.decision, offer.offerFrom, offer.player)}}> Accept Offer</button>
-                  <button className="declineOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleDecline(e, offer.decision, offer.offerFrom, offer.player) }}> Decline Offer </button>
-                  <button className="negotiate" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.offerFrom, offer.player) }}> Invite to Negotiation</button>
-                </tr>
-              )
-            })}
+            {proposals.map((offer, key) => {
+                 return (
+                    <tr key={key}>
+                      <td>{offer.decision}</td>
+                      <td>{offer.offerFrom}</td>
+                      <td>{offer.transferType}</td>
+                      <td>{offer.salaryOffer}</td>
+                      <td>{offer.duration}</td>
+                      <button className="acceptOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleClick(e, offer.decision, offer.offerFrom, offer.player)}}> Accept Offer</button>
+                      <button className="declineOffer" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleDecline(e, offer.decision, offer.offerFrom, offer.player) }}> Decline Offer </button>
+                      <button className="negotiate" disabled={offer.decision != "AWAITING DECISION"} onClick={(e) => { handleNegotiate(e, offer.decision, offer.offerFrom, offer.player) }}> Invite to Negotiation</button>
+                    </tr>
+                  )
+                })
+            }
           </table>
         </div>
       );

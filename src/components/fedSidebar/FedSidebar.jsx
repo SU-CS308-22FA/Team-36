@@ -59,6 +59,12 @@ const FedSidebar = () => {
               <span>Send Request to Clubs</span>
             </li>
           </Link>
+          <Link to="/fedNotifications" style={{ textDecoration: "none" }}>
+            <li>
+              <StoreIcon className="icon" />
+              <span>Requests recieved from Clubs</span>
+            </li>
+          </Link>
           <Link to="/fedhome" style={{ textDecoration: "none" }}>
             <li>
               <DocumentScannerOutlined className="icon" />
@@ -77,10 +83,22 @@ const FedSidebar = () => {
               <span>National</span>
             </li>
           </Link>
-          <Link to="/pay_fed" style={{ textDecoration: "none" }}>
+          <Link to="/fedtransfersystem" style={{textDecoration: "none"}}>
             <li>
-              <RequestQuote className="icon" />
-              <span>Fee</span>
+              <PersonOutlineIcon className="icon"/>
+              <span>Transfer System</span>
+            </li>
+          </Link>
+          <Link to="/clubffpstatus" style={{textDecoration: "none"}}>
+            <li>
+              <AccountCircleOutlinedIcon className="icon"/>
+              <span>Clubs Financial Fair Play Status</span>
+            </li>
+          </Link>  
+          <Link to="/spendinglimitfed" style={{ textDecoration: "none" }}>
+            <li>
+              <Public className="icon" />
+              <span>Spending Limit</span>
             </li>
           </Link>
         </ul>
